@@ -1,0 +1,36 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://studiolegale.it/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# Disallow sensitive areas (if any)
+# Disallow: /admin/
+# Disallow: /private/
+
+# Allow important pages
+Allow: /
+Allow: /index.html
+Allow: /demo.html
+
+# Allow static assets
+Allow: /src/
+Allow: /public/
+Allow: *.css
+Allow: *.js
+Allow: *.png
+Allow: *.jpg
+Allow: *.jpeg
+Allow: *.gif
+Allow: *.svg
+Allow: *.ico
+Allow: *.webp
+
+# Legal and professional compliance
+# This website complies with:
+# - Italian Bar Association guidelines
+# - GDPR privacy regulations
+# - Professional legal advertising standards

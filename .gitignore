@@ -1,5 +1,5 @@
 # ===================================
-# Studio Legale Raimondi Website
+# Studio Legale  Website
 # Professional Law Firm Website
 # React + Vite + Tailwind CSS
 # ===================================
@@ -302,6 +302,9 @@ report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
 # Compiled CSS (if using Sass/Less)
 # src/**/*.css.map
+
+# Favicon instruction files (development only)
+public/favicon-instructions.txt
 
 # ===================================
 # Keep These Files (Examples)

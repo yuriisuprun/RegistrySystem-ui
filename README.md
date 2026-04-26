@@ -54,6 +54,49 @@ A modern, professional law firm website built with React, featuring a mobile-fir
    npm install
    ```
 
+3. **Generate favicons** (required for production)
+   ```bash
+   npm run favicon:check
+   ```
+   Follow the instructions to generate all required favicon formats from `public/favicon.svg`
+
+4. **Start development server**
+   ```bash
+   npm run dev
+   ```
+
+## 🎨 Favicon & Branding
+
+The website includes a comprehensive favicon setup with a professional justice scales symbol:
+
+### Current Status
+- ✅ **favicon.svg** - Vector favicon with justice scales design
+- ✅ **site.webmanifest** - PWA manifest for mobile installation
+- ✅ **browserconfig.xml** - Windows tile configuration
+- ⚠️ **PNG/ICO files** - Need to be generated from SVG source
+
+### Generate Missing Files
+```bash
+# Check favicon status
+npm run favicon:check
+
+# Use online tools (recommended):
+# 1. Visit https://realfavicongenerator.net/
+# 2. Upload public/favicon.svg
+# 3. Download and extract to public/ directory
+```
+
+### Design Elements
+- **Symbol**: Justice scales representing legal profession
+- **Colors**: Gold (#c8a96a) on dark blue (#0f1720)
+- **Style**: Professional, minimal, recognizable at all sizes
+- **Formats**: SVG, ICO, PNG (multiple sizes), Apple Touch, Android Chrome
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
 3. **Start development server**
    ```bash
    npm run dev

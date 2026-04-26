@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favicon Test - Studio Legale Raimondi</title>
+    
+    <!-- Favicon Links (same as main site) -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="alternate icon" href="/favicon-placeholder.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#c8a96a">
+    <meta name="msapplication-TileColor" content="#0f1720">
+    <meta name="msapplication-config" content="/browserconfig.xml">
+    <meta name="theme-color" content="#c8a96a">
+    
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: #0f1720;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, #1a2332, #0f1720);
+            border-radius: 8px;
+            border: 1px solid #c8a96a;
+        }
+        .logo {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 1rem;
+            display: block;
+        }
+        .checklist {
+            background: #1a2332;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+        .checklist h3 {
+            color: #c8a96a;
+            margin-top: 0;
+        }
+        .check-item {
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            background: #0f1720;
+            border-radius: 4px;
+        }
+        .status {
+            display: inline-block;
+            width: 20px;
+            text-align: center;
+        }
+        .working { color: #4ade80; }
+        .missing { color: #f87171; }
+        .warning { color: #fbbf24; }
+        .link {
+            color: #c8a96a;
+            text-decoration: none;
+        }
+        .link:hover {
+            text-decoration: underline;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #c8a96a;
+            color: #cccccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="/favicon.svg" alt="Studio Legale Raimondi" class="logo">
+        <h1>🏛️ Favicon Test Page</h1>
+        <p>Studio Legale Raimondi - Professional Law Firm</p>
+    </div>
+
+    <div class="checklist">
+        <h3>📋 Favicon Implementation Status</h3>
+        
+        <div class="check-item">
+            <span class="status working">✅</span>
+            <strong>favicon.svg</strong> - Vector favicon (working in modern browsers)
+        </div>
+        
+        <div class="check-item">
+            <span class="status warning">⚠️</span>
+            <strong>favicon.ico</strong> - Legacy browser support (placeholder file)
+        </div>
+        
+        <div class="check-item">
+            <span class="status missing">❌</span>
+            <strong>PNG favicons</strong> - Various sizes for different devices
+        </div>
+        
+        <div class="check-item">
+            <span class="status working">✅</span>
+            <strong>site.webmanifest</strong> - PWA support configured
+        </div>
+        
+        <div class="check-item">
+            <span class="status working">✅</span>
+            <strong>browserconfig.xml</strong> - Windows tiles configured
+        </div>
+    </div>
+
+    <div class="checklist">
+        <h3>🧪 Testing Instructions</h3>
+        
+        <p><strong>1. Browser Tab Icon:</strong></p>
+        <ul>
+            <li>Check if the justice scales icon appears in the browser tab</li>
+            <li>Modern browsers should show the SVG favicon</li>
+            <li>Older browsers may show a generic icon until PNG files are generated</li>
+        </ul>
+        
+        <p><strong>2. Bookmarks:</strong></p>
+        <ul>
+            <li>Bookmark this page and check if the icon appears</li>
+            <li>Test in different browsers (Chrome, Firefox, Safari, Edge)</li>
+        </ul>
+        
+        <p><strong>3. Mobile Testing:</strong></p>
+        <ul>
+            <li>Add to home screen on iOS/Android</li>
+            <li>Check if the icon appears correctly</li>
+            <li>Verify the app name displays properly</li>
+        </ul>
+    </div>
+
+    <div class="checklist">
+        <h3>🛠️ Next Steps</h3>
+        
+        <p>To complete the favicon setup:</p>
+        <ol>
+            <li>Run <code>npm run favicon:check</code> to see detailed status</li>
+            <li>Visit <a href="https://realfavicongenerator.net/" class="link" target="_blank">RealFaviconGenerator</a></li>
+            <li>Upload the <code>favicon.svg</code> file</li>
+            <li>Download and extract all generated files to <code>public/</code> directory</li>
+            <li>Test on multiple devices and browsers</li>
+        </ol>
+    </div>
+
+    <div class="checklist">
+        <h3>🎨 Design Details</h3>
+        
+        <p><strong>Symbol:</strong> Justice scales representing legal profession</p>
+        <p><strong>Colors:</strong></p>
+        <ul>
+            <li>Primary: #c8a96a (gold)</li>
+            <li>Background: #0f1720 (dark blue)</li>
+        </ul>
+        <p><strong>Style:</strong> Professional, minimal, recognizable at small sizes</p>
+    </div>
+
+    <div class="footer">
+        <p>Studio Legale Raimondi | Professional Legal Services</p>
+        <p>📧 <a href="mailto:info@studiolegaleraimondi.it" class="link">info@studiolegaleraimondi.it</a> | 📞 +39 06 1234567</p>
+    </div>
+
+    <script>
+        // Check if favicon is loading
+        document.addEventListener('DOMContentLoaded', function() {
+            const favicon = document.querySelector('link[rel="icon"][type="image/svg+xml"]');
+            if (favicon) {
+                console.log('✅ SVG favicon link found:', favicon.href);
+            }
+            
+            // Log all favicon-related links
+            const faviconLinks = document.querySelectorAll('link[rel*="icon"], link[rel="manifest"]');
+            console.log('🔍 Favicon links found:', faviconLinks.length);
+            faviconLinks.forEach(link => {
+                console.log(`   ${link.rel}: ${link.href}`);
+            });
+        });
+    </script>
+</body>
+</html>

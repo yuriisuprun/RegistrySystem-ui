@@ -15,7 +15,9 @@
     "security:audit": "npm audit",
     "security:fix": "npm audit fix",
     "clean": "rm -rf dist build node_modules/.cache",
-    "prepare": "npm run lint && npm run format:check"
+    "prepare": "npm run lint && npm run format:check",
+    "favicon:check": "node scripts/generate-favicons.js",
+    "favicon:generate": "echo 'Please use online tools like https://realfavicongenerator.net/ to generate favicons from public/favicon.svg'"
   },
   "dependencies": {
     "react": "^18.2.0",

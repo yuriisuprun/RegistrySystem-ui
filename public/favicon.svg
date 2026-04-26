@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <defs>
+    <style>
+      .scales { fill: #c8a96a; }
+      .background { fill: #0f1720; }
+      .pillar { fill: #c8a96a; }
+    </style>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="16" cy="16" r="16" class="background"/>
+  
+  <!-- Justice scales symbol -->
+  <g transform="translate(16,16)">
+    <!-- Central pillar -->
+    <rect x="-0.5" y="-8" width="1" height="12" class="pillar"/>
+    
+    <!-- Horizontal beam -->
+    <rect x="-8" y="-8.5" width="16" height="1" class="scales"/>
+    
+    <!-- Left scale -->
+    <circle cx="-6" cy="-6" r="3" fill="none" stroke="#c8a96a" stroke-width="0.8"/>
+    <path d="M -8,-6 L -4,-6" stroke="#c8a96a" stroke-width="0.5"/>
+    
+    <!-- Right scale -->
+    <circle cx="6" cy="-6" r="3" fill="none" stroke="#c8a96a" stroke-width="0.8"/>
+    <path d="M 4,-6 L 8,-6" stroke="#c8a96a" stroke-width="0.5"/>
+    
+    <!-- Scale chains -->
+    <line x1="-6" y1="-8" x2="-6" y2="-9" stroke="#c8a96a" stroke-width="0.3"/>
+    <line x1="6" y1="-8" x2="6" y2="-9" stroke="#c8a96a" stroke-width="0.3"/>
+    
+    <!-- Base -->
+    <rect x="-2" y="3" width="4" height="1" class="pillar"/>
+  </g>
+</svg>
