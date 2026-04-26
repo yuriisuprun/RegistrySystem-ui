@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 const About = () => {
@@ -27,7 +27,7 @@ const About = () => {
     { number: '20+', label: 'Anni di esperienza' },
     { number: '500+', label: 'Clienti soddisfatti' },
     { number: '95%', label: 'Casi risolti con successo' },
-    { number: '24/7', label: 'Supporto disponibile' }
+    { number: '24/7', label: 'Supporto disponibile' },
   ]
 
   return (
@@ -35,9 +35,11 @@ const About = () => {
       <div className="container-max">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Image Column */}
-          <div className={`transition-all duration-1000 ${
-            isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
-          }`}>
+          <div
+            className={`transition-all duration-1000 ${
+              isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
+            }`}
+          >
             <div className="relative">
               {/* Main Image */}
               <div className="relative overflow-hidden rounded-2xl shadow-2xl">
@@ -65,9 +67,11 @@ const About = () => {
           </div>
 
           {/* Content Column */}
-          <div className={`transition-all duration-1000 delay-300 ${
-            isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
-          }`}>
+          <div
+            className={`transition-all duration-1000 delay-300 ${
+              isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
+            }`}
+          >
             {/* Section Label */}
             <div className="flex items-center mb-4">
               <div className="w-12 h-0.5 bg-primary-gold mr-4"></div>
@@ -83,12 +87,8 @@ const About = () => {
 
             {/* Content */}
             <div className="space-y-6 text-primary-gray leading-relaxed">
-              <p className="text-lg">
-                {t('about.content')}
-              </p>
-              <p>
-                {t('about.content2')}
-              </p>
+              <p className="text-lg">{t('about.content')}</p>
+              <p>{t('about.content2')}</p>
             </div>
 
             {/* Stats Grid */}
@@ -101,21 +101,19 @@ const About = () => {
                   }`}
                   style={{ transitionDelay: `${600 + index * 100}ms` }}
                 >
-                  <div className="text-3xl font-bold text-primary-gold mb-2">
-                    {stat.number}
-                  </div>
-                  <div className="text-sm text-primary-gray font-medium">
-                    {stat.label}
-                  </div>
+                  <div className="text-3xl font-bold text-primary-gold mb-2">{stat.number}</div>
+                  <div className="text-sm text-primary-gray font-medium">{stat.label}</div>
                 </div>
               ))}
             </div>
 
             {/* CTA Buttons */}
-            <div className={`flex flex-col sm:flex-row gap-4 mt-10 transition-all duration-1000 delay-1000 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
-            }`}>
-              <button 
+            <div
+              className={`flex flex-col sm:flex-row gap-4 mt-10 transition-all duration-1000 delay-1000 ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+              }`}
+            >
+              <button
                 onClick={() => {
                   const element = document.getElementById('team')
                   if (element) {
@@ -136,30 +134,44 @@ const About = () => {
         </div>
 
         {/* Additional Features */}
-        <div className={`mt-20 transition-all duration-1000 delay-500 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}>
+        <div
+          className={`mt-20 transition-all duration-1000 delay-500 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
+        >
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center p-6">
               <div className="w-16 h-16 bg-primary-gold/20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <i className="fas fa-award text-primary-gold text-2xl"></i>
               </div>
-              <h3 className="text-xl font-semibold text-primary-light mb-2">Eccellenza riconosciuta</h3>
-              <p className="text-primary-gray">Premiati dalle principali associazioni legali italiane</p>
+              <h3 className="text-xl font-semibold text-primary-light mb-2">
+                Eccellenza riconosciuta
+              </h3>
+              <p className="text-primary-gray">
+                Premiati dalle principali associazioni legali italiane
+              </p>
             </div>
             <div className="text-center p-6">
               <div className="w-16 h-16 bg-primary-gold/20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <i className="fas fa-handshake text-primary-gold text-2xl"></i>
               </div>
-              <h3 className="text-xl font-semibold text-primary-light mb-2">Approccio personalizzato</h3>
-              <p className="text-primary-gray">Ogni cliente riceve un servizio su misura per le sue esigenze</p>
+              <h3 className="text-xl font-semibold text-primary-light mb-2">
+                Approccio personalizzato
+              </h3>
+              <p className="text-primary-gray">
+                Ogni cliente riceve un servizio su misura per le sue esigenze
+              </p>
             </div>
             <div className="text-center p-6">
               <div className="w-16 h-16 bg-primary-gold/20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <i className="fas fa-clock text-primary-gold text-2xl"></i>
               </div>
-              <h3 className="text-xl font-semibold text-primary-light mb-2">Disponibilità totale</h3>
-              <p className="text-primary-gray">Supporto continuo durante tutto il processo legale</p>
+              <h3 className="text-xl font-semibold text-primary-light mb-2">
+                Disponibilità totale
+              </h3>
+              <p className="text-primary-gray">
+                Supporto continuo durante tutto il processo legale
+              </p>
             </div>
           </div>
         </div>

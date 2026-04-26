@@ -64,6 +64,7 @@ A modern, professional law firm website built with React, featuring a mobile-fir
    ```bash
    npm run dev
    ```
+   The development server will start on `http://localhost:3344`
 
 ## 🎨 Favicon & Branding
 
@@ -101,6 +102,7 @@ npm run favicon:check
    ```bash
    npm run dev
    ```
+   Server runs on `http://localhost:3344`
 
 4. **Build for production**
    ```bash
@@ -111,6 +113,7 @@ npm run favicon:check
    ```bash
    npm run preview
    ```
+   Preview server runs on `http://localhost:3344`
 
 ## 📁 Project Structure
 

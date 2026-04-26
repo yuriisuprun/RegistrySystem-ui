@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 const Team = () => {
@@ -30,10 +30,11 @@ const Team = () => {
       title: t('team.lawyer1.title'),
       specialization: t('team.lawyer1.specialization'),
       description: t('team.lawyer1.description'),
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+      image:
+        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
       email: 'm.@studiolegale.it',
       credentials: ['Ordine Avvocati Roma dal 1998', 'Cassazionista'],
-      featured: true
+      featured: true,
     },
     {
       id: 'lawyer2',
@@ -41,9 +42,10 @@ const Team = () => {
       title: t('team.lawyer2.title'),
       specialization: t('team.lawyer2.specialization'),
       description: t('team.lawyer2.description'),
-      image: 'https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+      image:
+        'https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
       email: 'e.rossi@studiolegale.it',
-      credentials: ['Ordine Avvocati Roma dal 2010']
+      credentials: ['Ordine Avvocati Roma dal 2010'],
     },
     {
       id: 'lawyer3',
@@ -51,9 +53,10 @@ const Team = () => {
       title: t('team.lawyer3.title'),
       specialization: t('team.lawyer3.specialization'),
       description: t('team.lawyer3.description'),
-      image: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+      image:
+        'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
       email: 'g.bianchi@studiolegale.it',
-      credentials: ['Ordine Avvocati Roma dal 2015']
+      credentials: ['Ordine Avvocati Roma dal 2015'],
     },
     {
       id: 'lawyer4',
@@ -61,33 +64,38 @@ const Team = () => {
       title: t('team.lawyer4.title'),
       specialization: t('team.lawyer4.specialization'),
       description: t('team.lawyer4.description'),
-      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+      image:
+        'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
       email: 'f.conti@studiolegale.it',
-      credentials: ['Ordine Avvocati Roma dal 2020']
-    }
+      credentials: ['Ordine Avvocati Roma dal 2020'],
+    },
   ]
 
   const certifications = [
     { icon: 'fas fa-certificate', text: 'Ordine degli Avvocati di Roma' },
     { icon: 'fas fa-balance-scale', text: 'Camera Civile di Roma' },
     { icon: 'fas fa-globe', text: 'Unione Internazionale Avvocati' },
-    { icon: 'fas fa-award', text: 'Certificazione ISO 9001:2015' }
+    { icon: 'fas fa-award', text: 'Certificazione ISO 9001:2015' },
   ]
 
   return (
-    <section id="team" ref={sectionRef} className="section-padding bg-gradient-to-b from-primary-dark to-gray-900">
+    <section
+      id="team"
+      ref={sectionRef}
+      className="section-padding bg-gradient-to-b from-primary-dark to-gray-900"
+    >
       <div className="container-max">
         {/* Section Header */}
-        <div className={`text-center mb-16 transition-all duration-1000 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}>
+        <div
+          className={`text-center mb-16 transition-all duration-1000 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
+        >
           <h2 className="text-4xl lg:text-5xl font-heading font-bold text-primary-light mb-4">
             {t('team.title')}
           </h2>
           <div className="w-24 h-1 bg-primary-gold mx-auto mb-6"></div>
-          <p className="text-lg text-primary-gray max-w-3xl mx-auto">
-            {t('team.subtitle')}
-          </p>
+          <p className="text-lg text-primary-gray max-w-3xl mx-auto">{t('team.subtitle')}</p>
         </div>
 
         {/* Team Grid */}
@@ -97,9 +105,7 @@ const Team = () => {
               key={member.id}
               className={`group card-hover transition-all duration-1000 ${
                 member.featured ? 'md:col-span-2 lg:col-span-2' : ''
-              } ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-              }`}
+              } ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
               style={{ transitionDelay: `${index * 200}ms` }}
             >
               <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-700/50 group-hover:border-primary-gold/50 transition-all duration-300">
@@ -139,13 +145,11 @@ const Team = () => {
                   <p className="text-primary-gold font-medium text-sm uppercase tracking-wide mb-2">
                     {member.title}
                   </p>
-                  <p className="text-primary-gray italic text-sm mb-4">
-                    {member.specialization}
-                  </p>
+                  <p className="text-primary-gray italic text-sm mb-4">{member.specialization}</p>
                   <p className="text-primary-gray text-sm leading-relaxed mb-4">
                     {member.description}
                   </p>
-                  
+
                   {/* Credentials */}
                   <div className="flex flex-wrap gap-2">
                     {member.credentials.map((credential, credIndex) => (
@@ -164,9 +168,11 @@ const Team = () => {
         </div>
 
         {/* Certifications */}
-        <div className={`text-center transition-all duration-1000 delay-800 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`}>
+        <div
+          className={`text-center transition-all duration-1000 delay-800 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
+        >
           <h3 className="text-2xl font-heading font-semibold text-primary-light mb-8">
             {t('team.certifications')}
           </h3>

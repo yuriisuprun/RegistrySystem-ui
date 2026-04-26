@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 const Footer = () => {
@@ -8,32 +8,32 @@ const Footer = () => {
     email: '',
     phone: '',
     subject: '',
-    message: ''
+    message: '',
   })
 
-  const handleInputChange = (e) => {
+  const handleInputChange = e => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault()
     // Handle form submission here
-    console.log('Form submitted:', formData)
+    // TODO: Implement actual form submission logic
     // Reset form
     setFormData({
       name: '',
       email: '',
       phone: '',
       subject: '',
-      message: ''
+      message: '',
     })
     alert('Grazie per il tuo messaggio! Ti contatteremo presto.')
   }
 
-  const scrollToSection = (sectionId) => {
+  const scrollToSection = sectionId => {
     const element = document.getElementById(sectionId)
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' })
@@ -52,7 +52,8 @@ const Footer = () => {
                 Contattaci
               </h2>
               <p className="text-primary-gray text-lg mb-8">
-                Siamo qui per aiutarti. Contattaci per una consulenza gratuita e scopri come possiamo risolvere il tuo caso legale.
+                Siamo qui per aiutarti. Contattaci per una consulenza gratuita e scopri come
+                possiamo risolvere il tuo caso legale.
               </p>
 
               {/* Contact Details */}
@@ -73,7 +74,10 @@ const Footer = () => {
                   </div>
                   <div>
                     <h3 className="text-primary-light font-semibold mb-1">Telefono</h3>
-                    <a href="tel:+390612345678" className="text-primary-gray hover:text-primary-gold transition-colors">
+                    <a
+                      href="tel:+390612345678"
+                      className="text-primary-gray hover:text-primary-gold transition-colors"
+                    >
                       {t('footer.phone')}
                     </a>
                   </div>
@@ -85,7 +89,10 @@ const Footer = () => {
                   </div>
                   <div>
                     <h3 className="text-primary-light font-semibold mb-1">Email</h3>
-                    <a href="mailto:info@studiolegale.it" className="text-primary-gray hover:text-primary-gold transition-colors">
+                    <a
+                      href="mailto:info@studiolegale.it"
+                      className="text-primary-gray hover:text-primary-gold transition-colors"
+                    >
                       {t('footer.email')}
                     </a>
                   </div>
@@ -110,16 +117,28 @@ const Footer = () => {
               <div className="mt-8">
                 <h3 className="text-primary-light font-semibold mb-4">Seguici sui social</h3>
                 <div className="flex space-x-4">
-                  <a href="#" className="w-10 h-10 bg-primary-gold/20 rounded-lg flex items-center justify-center hover:bg-primary-gold hover:text-primary-dark transition-all duration-300">
+                  <a
+                    href="#"
+                    className="w-10 h-10 bg-primary-gold/20 rounded-lg flex items-center justify-center hover:bg-primary-gold hover:text-primary-dark transition-all duration-300"
+                  >
                     <i className="fab fa-facebook-f"></i>
                   </a>
-                  <a href="#" className="w-10 h-10 bg-primary-gold/20 rounded-lg flex items-center justify-center hover:bg-primary-gold hover:text-primary-dark transition-all duration-300">
+                  <a
+                    href="#"
+                    className="w-10 h-10 bg-primary-gold/20 rounded-lg flex items-center justify-center hover:bg-primary-gold hover:text-primary-dark transition-all duration-300"
+                  >
                     <i className="fab fa-linkedin-in"></i>
                   </a>
-                  <a href="#" className="w-10 h-10 bg-primary-gold/20 rounded-lg flex items-center justify-center hover:bg-primary-gold hover:text-primary-dark transition-all duration-300">
+                  <a
+                    href="#"
+                    className="w-10 h-10 bg-primary-gold/20 rounded-lg flex items-center justify-center hover:bg-primary-gold hover:text-primary-dark transition-all duration-300"
+                  >
                     <i className="fab fa-twitter"></i>
                   </a>
-                  <a href="#" className="w-10 h-10 bg-primary-gold/20 rounded-lg flex items-center justify-center hover:bg-primary-gold hover:text-primary-dark transition-all duration-300">
+                  <a
+                    href="#"
+                    className="w-10 h-10 bg-primary-gold/20 rounded-lg flex items-center justify-center hover:bg-primary-gold hover:text-primary-dark transition-all duration-300"
+                  >
                     <i className="fab fa-instagram"></i>
                   </a>
                 </div>
@@ -135,7 +154,10 @@ const Footer = () => {
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label htmlFor="name" className="block text-primary-gray text-sm font-medium mb-2">
+                      <label
+                        htmlFor="name"
+                        className="block text-primary-gray text-sm font-medium mb-2"
+                      >
                         Nome completo *
                       </label>
                       <input
@@ -150,7 +172,10 @@ const Footer = () => {
                       />
                     </div>
                     <div>
-                      <label htmlFor="email" className="block text-primary-gray text-sm font-medium mb-2">
+                      <label
+                        htmlFor="email"
+                        className="block text-primary-gray text-sm font-medium mb-2"
+                      >
                         Email *
                       </label>
                       <input
@@ -168,7 +193,10 @@ const Footer = () => {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label htmlFor="phone" className="block text-primary-gray text-sm font-medium mb-2">
+                      <label
+                        htmlFor="phone"
+                        className="block text-primary-gray text-sm font-medium mb-2"
+                      >
                         Telefono
                       </label>
                       <input
@@ -182,7 +210,10 @@ const Footer = () => {
                       />
                     </div>
                     <div>
-                      <label htmlFor="subject" className="block text-primary-gray text-sm font-medium mb-2">
+                      <label
+                        htmlFor="subject"
+                        className="block text-primary-gray text-sm font-medium mb-2"
+                      >
                         Oggetto *
                       </label>
                       <select
@@ -193,8 +224,8 @@ const Footer = () => {
                         required
                         className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-primary-light focus:outline-none focus:border-primary-gold focus:ring-1 focus:ring-primary-gold transition-colors"
                       >
-                        <option value="">Seleziona un'area</option>
-                        <option value="immigration">Diritto dell'Immigrazione</option>
+                        <option value="">Seleziona un&apos;area</option>
+                        <option value="immigration">Diritto dell&apos;Immigrazione</option>
                         <option value="civil">Diritto Civile</option>
                         <option value="real-estate">Diritto Immobiliare</option>
                         <option value="liability">Responsabilità Civile</option>
@@ -204,7 +235,10 @@ const Footer = () => {
                   </div>
 
                   <div>
-                    <label htmlFor="message" className="block text-primary-gray text-sm font-medium mb-2">
+                    <label
+                      htmlFor="message"
+                      className="block text-primary-gray text-sm font-medium mb-2"
+                    >
                       Messaggio *
                     </label>
                     <textarea
@@ -231,14 +265,11 @@ const Footer = () => {
                       <a href="#" className="text-primary-gold hover:underline">
                         Privacy Policy
                       </a>{' '}
-                      e autorizzo l'invio di comunicazioni commerciali.
+                      e autorizzo l&apos;invio di comunicazioni commerciali.
                     </label>
                   </div>
 
-                  <button
-                    type="submit"
-                    className="w-full btn-primary text-lg py-4"
-                  >
+                  <button type="submit" className="w-full btn-primary text-lg py-4">
                     <i className="fas fa-paper-plane mr-2"></i>
                     Invia messaggio
                   </button>
@@ -258,9 +289,7 @@ const Footer = () => {
               <h3 className="text-xl font-heading font-bold text-primary-gold mb-2 md:mb-0 md:mr-6">
                 Studio Legale
               </h3>
-              <p className="text-primary-gray text-sm">
-                {t('footer.copyright')}
-              </p>
+              <p className="text-primary-gray text-sm">{t('footer.copyright')}</p>
             </div>
 
             {/* Navigation Links */}
