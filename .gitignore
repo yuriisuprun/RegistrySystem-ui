@@ -1,104 +1,312 @@
-# Dependencies
+# ===================================
+# Studio Legale Raimondi Website
+# Professional Law Firm Website
+# React + Vite + Tailwind CSS
+# ===================================
+
+# ===================================
+# Dependencies & Package Managers
+# ===================================
 node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
+.pnpm-store/
+.yarn/
+.yarn-integrity
 
-# Build outputs
+# Package manager lock files (keep package-lock.json for consistency)
+# yarn.lock
+# pnpm-lock.yaml
+
+# ===================================
+# Build Outputs & Distribution
+# ===================================
 dist/
 build/
-*.local
+out/
+.output/
+.vercel/
+.netlify/
 
-# Environment variables
+# Vite specific
+*.local
+.vite/
+
+# ===================================
+# Environment Variables & Secrets
+# ===================================
 .env
 .env.local
+.env.development
 .env.development.local
+.env.test
 .env.test.local
+.env.production
 .env.production.local
+.env.staging
 
-# IDE and editor files
+# API Keys and sensitive data
+config/secrets.json
+config/production.json
+*.key
+*.pem
+*.p12
+*.pfx
+
+# ===================================
+# IDE & Editor Files
+# ===================================
+# Visual Studio Code
 .vscode/
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+
+# IntelliJ IDEA / WebStorm
 .idea/
+*.iml
+*.ipr
+*.iws
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
 *.swp
 *.swo
 *~
+.netrwhist
 
-# OS generated files
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# ===================================
+# Operating System Files
+# ===================================
+# macOS
 .DS_Store
 .DS_Store?
 ._*
 .Spotlight-V100
 .Trashes
-ehthumbs.db
-Thumbs.db
+.AppleDouble
+.LSOverride
+Icon
 
-# Logs
-logs
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# ===================================
+# Logs & Runtime Data
+# ===================================
+logs/
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
 # Runtime data
-pids
+pids/
 *.pid
 *.seed
 *.pid.lock
 
-# Coverage directory used by tools like istanbul
+# ===================================
+# Testing & Coverage
+# ===================================
 coverage/
 *.lcov
+.nyc_output/
+.coverage/
+htmlcov/
+.tox/
+.pytest_cache/
+.vitest/
 
-# nyc test coverage
-.nyc_output
+# Jest
+jest.config.js.snap
+__snapshots__/
 
-# Dependency directories
-jspm_packages/
-
-# Optional npm cache directory
-.npm
-
-# Optional eslint cache
+# ===================================
+# Caching & Temporary Files
+# ===================================
+# npm
+.npm/
 .eslintcache
 
-# Microbundle cache
+# Yarn
+.yarn-integrity
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+
+# Parcel
+.cache/
+.parcel-cache/
+
+# Vite
+.vite/
+
+# Rollup
 .rpt2_cache/
 .rts2_cache_cjs/
 .rts2_cache_es/
 .rts2_cache_umd/
 
+# Temporary folders
+tmp/
+temp/
+.tmp/
+
+# ===================================
+# Deployment & Hosting
+# ===================================
+# Vercel
+.vercel/
+
+# Netlify
+.netlify/
+
+# Firebase
+.firebase/
+firebase-debug.log
+firestore-debug.log
+
+# AWS
+.aws/
+
+# Heroku
+.heroku/
+
+# ===================================
+# Legal & Professional Files
+# ===================================
+# Client confidential information
+client-data/
+confidential/
+legal-docs/private/
+case-files/
+
+# Backup files
+*.bak
+*.backup
+*.old
+*.orig
+
+# ===================================
+# Development Tools
+# ===================================
+# Storybook
+.storybook-out/
+storybook-static/
+
+# TypeScript
+*.tsbuildinfo
+
+# ESLint
+.eslintcache
+
+# Prettier
+.prettierignore
+
+# Stylelint
+.stylelintcache
+
+# ===================================
+# Database & Local Storage
+# ===================================
+*.sqlite
+*.sqlite3
+*.db
+*.db-journal
+
+# ===================================
+# Media & Assets (Large Files)
+# ===================================
+# Uncomment if you have large media files that shouldn't be versioned
+# *.mp4
+# *.avi
+# *.mov
+# *.wmv
+# *.flv
+# *.webm
+# *.mkv
+
+# Large images (keep smaller web-optimized versions)
+# *.psd
+# *.ai
+# *.sketch
+# *.fig
+
+# ===================================
+# Documentation Build
+# ===================================
+docs/build/
+docs/.vuepress/dist/
+.docusaurus/
+
+# ===================================
+# Miscellaneous
+# ===================================
 # Optional REPL history
 .node_repl_history
 
 # Output of 'npm pack'
 *.tgz
 
-# Yarn Integrity file
-.yarn-integrity
+# Diagnostic reports
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
-# parcel-bundler cache (https://parceljs.org/)
-.cache
-.parcel-cache
+# ===================================
+# Project Specific Exclusions
+# ===================================
+# Demo files for development (uncomment if needed)
+# demo.html
 
-# Next.js build output
-.next
+# Generated translation files
+# src/i18n/generated/
 
-# Nuxt.js build / generate output
-.nuxt
+# Compiled CSS (if using Sass/Less)
+# src/**/*.css.map
 
-# Storybook build outputs
-.out
-.storybook-out
-
-# Temporary folders
-tmp/
-temp/
-
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+# ===================================
+# Keep These Files (Examples)
+# ===================================
+# !.gitkeep
+# !.htaccess
+# !.editorconfig
+# !.nvmrc
