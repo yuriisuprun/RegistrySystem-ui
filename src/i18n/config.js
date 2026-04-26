@@ -39,7 +39,7 @@ const resources = {
       },
       about: {
         label: 'Chi siamo',
-        title: 'Studio Legale Raimondi',
+        title: 'Studio Legale',
         content: 'Il nostro studio legale rappresenta l\'eccellenza nella consulenza giuridica, combinando tradizione e innovazione per offrire soluzioni legali efficaci. Con un team di avvocati altamente qualificati, ci impegniamo a tutelare i diritti dei nostri clienti con professionalità e dedizione.',
         content2: 'La nostra esperienza pluriennale e la conoscenza approfondita del diritto italiano ci permettono di affrontare anche i casi più complessi con competenza e determinazione.'
       },
@@ -48,7 +48,7 @@ const resources = {
         subtitle: 'Professionisti esperti al vostro servizio con competenze specializzate',
         certifications: 'Certificazioni e Appartenenze',
         lawyer1: {
-          name: 'Avv. Marco Raimondi',
+          name: 'Avv. Marco ',
           title: 'Fondatore e Partner Senior',
           specialization: 'Diritto Civile, Diritto Immobiliare',
           description: 'Oltre 25 anni di esperienza nel diritto civile e immobiliare. Laureato con lode presso l\'Università La Sapienza di Roma, specializzato in controversie complesse e transazioni immobiliari di alto valore.'
@@ -80,8 +80,8 @@ const resources = {
       footer: {
         address: 'Via Roma 123, 00100 Roma, Italia',
         phone: '+39 06 1234567',
-        email: 'info@studiolegaleraimondi.it',
-        copyright: '© 2024 Studio Legale Raimondi. Tutti i diritti riservati.'
+        email: 'info@studiolegale.it',
+        copyright: '© 2024 Studio Legale . Tutti i diritti riservati.'
       }
     }
   },
@@ -122,7 +122,7 @@ const resources = {
       },
       about: {
         label: 'About Us',
-        title: 'Raimondi Law Firm',
+        title: ' Law Firm',
         content: 'Our law firm represents excellence in legal consultation, combining tradition and innovation to offer effective legal solutions. With a team of highly qualified lawyers, we are committed to protecting our clients\' rights with professionalism and dedication.',
         content2: 'Our years of experience and deep knowledge of Italian law allow us to handle even the most complex cases with competence and determination.'
       },
@@ -131,7 +131,7 @@ const resources = {
         subtitle: 'Expert professionals at your service with specialized expertise',
         certifications: 'Certifications and Memberships',
         lawyer1: {
-          name: 'Atty. Marco Raimondi',
+          name: 'Atty. Marco ',
           title: 'Founder and Senior Partner',
           specialization: 'Civil Law, Real Estate Law',
           description: 'Over 25 years of experience in civil and real estate law. Graduated with honors from La Sapienza University of Rome, specialized in complex disputes and high-value real estate transactions.'
@@ -163,8 +163,8 @@ const resources = {
       footer: {
         address: 'Via Roma 123, 00100 Rome, Italy',
         phone: '+39 06 1234567',
-        email: 'info@studiolegaleraimondi.it',
-        copyright: '© 2024 Raimondi Law Firm. All rights reserved.'
+        email: 'info@studiolegale.it',
+        copyright: '© 2024  Law Firm. All rights reserved.'
       }
     }
   },
@@ -205,7 +205,7 @@ const resources = {
       },
       about: {
         label: 'О нас',
-        title: 'Юридическая фирма Раймонди',
+        title: 'Юридическая фирма',
         content: 'Наша юридическая фирма представляет совершенство в юридических консультациях, сочетая традиции и инновации для предложения эффективных правовых решений. С командой высококвалифицированных юристов мы стремимся защищать права наших клиентов с профессионализмом и преданностью.',
         content2: 'Наш многолетний опыт и глубокое знание итальянского права позволяют нам справляться даже с самыми сложными делами с компетентностью и решимостью.'
       },
@@ -214,7 +214,7 @@ const resources = {
         subtitle: 'Опытные профессионалы к вашим услугам со специализированной экспертизой',
         certifications: 'Сертификации и Членство',
         lawyer1: {
-          name: 'Адв. Марко Раймонди',
+          name: 'Адв. ...',
           title: 'Основатель и Старший Партнер',
           specialization: 'Гражданское право, Право недвижимости',
           description: 'Более 25 лет опыта в гражданском праве и праве недвижимости. Окончил с отличием Университет Ла Сапиенца в Риме, специализируется на сложных спорах и сделках с недвижимостью высокой стоимости.'
@@ -246,8 +246,8 @@ const resources = {
       footer: {
         address: 'Виа Рома 123, 00100 Рим, Италия',
         phone: '+39 06 1234567',
-        email: 'info@studiolegaleraimondi.it',
-        copyright: '© 2024 Юридическая фирма Раймонди. Все права защищены.'
+        email: 'info@studiolegale.it',
+        copyright: '© 2024 Юридическая фирма. Все права защищены.'
       }
     }
   }

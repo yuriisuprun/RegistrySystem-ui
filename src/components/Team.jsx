@@ -31,7 +31,7 @@ const Team = () => {
       specialization: t('team.lawyer1.specialization'),
       description: t('team.lawyer1.description'),
       image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
-      email: 'm.raimondi@studiolegaleraimondi.it',
+      email: 'm.@studiolegale.it',
       credentials: ['Ordine Avvocati Roma dal 1998', 'Cassazionista'],
       featured: true
     },
@@ -42,7 +42,7 @@ const Team = () => {
       specialization: t('team.lawyer2.specialization'),
       description: t('team.lawyer2.description'),
       image: 'https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
-      email: 'e.rossi@studiolegaleraimondi.it',
+      email: 'e.rossi@studiolegale.it',
       credentials: ['Ordine Avvocati Roma dal 2010']
     },
     {
@@ -52,7 +52,7 @@ const Team = () => {
       specialization: t('team.lawyer3.specialization'),
       description: t('team.lawyer3.description'),
       image: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
-      email: 'g.bianchi@studiolegaleraimondi.it',
+      email: 'g.bianchi@studiolegale.it',
       credentials: ['Ordine Avvocati Roma dal 2015']
     },
     {
@@ -62,7 +62,7 @@ const Team = () => {
       specialization: t('team.lawyer4.specialization'),
       description: t('team.lawyer4.description'),
       image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
-      email: 'f.conti@studiolegaleraimondi.it',
+      email: 'f.conti@studiolegale.it',
       credentials: ['Ordine Avvocati Roma dal 2020']
     }
   ]
