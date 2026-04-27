@@ -141,6 +141,12 @@ const Footer = () => {
                   >
                     <i className="fab fa-instagram"></i>
                   </a>
+                  <a
+                    href="#"
+                    className="w-10 h-10 bg-primary-gold/20 rounded-lg flex items-center justify-center hover:bg-primary-gold hover:text-primary-dark transition-all duration-300"
+                  >
+                    <i className="fab fa-youtube"></i>
+                  </a>
                 </div>
               </div>
             </div>
