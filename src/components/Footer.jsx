@@ -289,7 +289,9 @@ const Footer = () => {
               <h3 className="text-xl font-heading font-bold text-primary-gold mb-2 md:mb-0 md:mr-6">
                 Studio Legale
               </h3>
-              <p className="text-primary-gray text-sm">{t('footer.copyright')}</p>
+              <p className="text-primary-gray text-sm">
+                © {new Date().getFullYear()} Studio Legale. Tutti i diritti riservati.
+              </p>
             </div>
 
             {/* Navigation Links */}
