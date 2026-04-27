@@ -82,7 +82,7 @@ const Team = () => {
     <section
       id="team"
       ref={sectionRef}
-      className="section-padding bg-gradient-to-b from-primary-dark to-gray-900"
+      className="section-padding section-light"
     >
       <div className="container-max">
         {/* Section Header */}
@@ -91,11 +91,11 @@ const Team = () => {
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
         >
-          <h2 className="text-4xl lg:text-5xl font-heading font-bold text-primary-light mb-4">
+          <h2 className="text-4xl lg:text-5xl font-heading font-bold text-primary-dark mb-4">
             {t('team.title')}
           </h2>
           <div className="w-24 h-1 bg-primary-gold mx-auto mb-6"></div>
-          <p className="text-lg text-primary-gray max-w-3xl mx-auto">{t('team.subtitle')}</p>
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto">{t('team.subtitle')}</p>
         </div>
 
         {/* Team Grid */}
@@ -108,7 +108,7 @@ const Team = () => {
               } ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
               style={{ transitionDelay: `${index * 200}ms` }}
             >
-              <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-700/50 group-hover:border-primary-gold/50 transition-all duration-300">
+              <div className="card-white rounded-xl overflow-hidden border border-gray-100 group-hover:border-primary-gold/30 transition-all duration-300">
                 {/* Member Image */}
                 <div className={`relative overflow-hidden ${member.featured ? 'h-80' : 'h-64'}`}>
                   <img
@@ -139,14 +139,14 @@ const Team = () => {
 
                 {/* Member Info */}
                 <div className={`p-6 ${member.featured ? 'lg:p-8' : ''}`}>
-                  <h3 className="text-xl font-heading font-semibold text-primary-light mb-2 group-hover:text-primary-gold transition-colors duration-300">
+                  <h3 className="text-xl font-heading font-semibold text-primary-dark mb-2 group-hover:text-primary-gold transition-colors duration-300">
                     {member.name}
                   </h3>
                   <p className="text-primary-gold font-medium text-sm uppercase tracking-wide mb-2">
                     {member.title}
                   </p>
-                  <p className="text-primary-gray italic text-sm mb-4">{member.specialization}</p>
-                  <p className="text-primary-gray text-sm leading-relaxed mb-4">
+                  <p className="text-gray-600 italic text-sm mb-4">{member.specialization}</p>
+                  <p className="text-gray-600 text-sm leading-relaxed mb-4">
                     {member.description}
                   </p>
 
@@ -173,17 +173,17 @@ const Team = () => {
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
         >
-          <h3 className="text-2xl font-heading font-semibold text-primary-light mb-8">
+          <h3 className="text-2xl font-heading font-semibold text-primary-dark mb-8">
             {t('team.certifications')}
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {certifications.map((cert, index) => (
               <div
                 key={index}
-                className="flex items-center justify-center gap-3 p-4 bg-gray-800/30 rounded-lg border border-gray-700/30 hover:border-primary-gold/50 hover:bg-primary-gold/10 transition-all duration-300"
+                className="flex items-center justify-center gap-3 p-4 bg-white rounded-lg border border-gray-200 hover:border-primary-gold/50 hover:bg-primary-gold/5 transition-all duration-300"
               >
                 <i className={`${cert.icon} text-primary-gold text-xl`}></i>
-                <span className="text-primary-gray text-sm font-medium">{cert.text}</span>
+                <span className="text-gray-600 text-sm font-medium">{cert.text}</span>
               </div>
             ))}
           </div>

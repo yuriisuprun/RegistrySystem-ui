@@ -31,7 +31,7 @@ const About = () => {
   ]
 
   return (
-    <section id="about" ref={sectionRef} className="section-padding bg-primary-dark">
+    <section id="about" ref={sectionRef} className="section-padding section-light">
       <div className="container-max">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Image Column */}
@@ -81,12 +81,12 @@ const About = () => {
             </div>
 
             {/* Title */}
-            <h2 className="text-4xl lg:text-5xl font-heading font-bold text-primary-light mb-6">
+            <h2 className="text-4xl lg:text-5xl font-heading font-bold text-primary-dark mb-6">
               {t('about.title')}
             </h2>
 
             {/* Content */}
-            <div className="space-y-6 text-primary-gray leading-relaxed">
+            <div className="space-y-6 text-gray-600 leading-relaxed">
               <p className="text-lg">{t('about.content')}</p>
               <p>{t('about.content2')}</p>
             </div>
@@ -102,7 +102,7 @@ const About = () => {
                   style={{ transitionDelay: `${600 + index * 100}ms` }}
                 >
                   <div className="text-3xl font-bold text-primary-gold mb-2">{stat.number}</div>
-                  <div className="text-sm text-primary-gray font-medium">{stat.label}</div>
+                  <div className="text-sm text-gray-600 font-medium">{stat.label}</div>
                 </div>
               ))}
             </div>
@@ -140,36 +140,36 @@ const About = () => {
           }`}
         >
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center p-6">
+            <div className="text-center p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow">
               <div className="w-16 h-16 bg-primary-gold/20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <i className="fas fa-award text-primary-gold text-2xl"></i>
               </div>
-              <h3 className="text-xl font-semibold text-primary-light mb-2">
+              <h3 className="text-xl font-semibold text-primary-dark mb-2">
                 Eccellenza riconosciuta
               </h3>
-              <p className="text-primary-gray">
+              <p className="text-gray-600">
                 Premiati dalle principali associazioni legali italiane
               </p>
             </div>
-            <div className="text-center p-6">
+            <div className="text-center p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow">
               <div className="w-16 h-16 bg-primary-gold/20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <i className="fas fa-handshake text-primary-gold text-2xl"></i>
               </div>
-              <h3 className="text-xl font-semibold text-primary-light mb-2">
+              <h3 className="text-xl font-semibold text-primary-dark mb-2">
                 Approccio personalizzato
               </h3>
-              <p className="text-primary-gray">
+              <p className="text-gray-600">
                 Ogni cliente riceve un servizio su misura per le sue esigenze
               </p>
             </div>
-            <div className="text-center p-6">
+            <div className="text-center p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow">
               <div className="w-16 h-16 bg-primary-gold/20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <i className="fas fa-clock text-primary-gold text-2xl"></i>
               </div>
-              <h3 className="text-xl font-semibold text-primary-light mb-2">
+              <h3 className="text-xl font-semibold text-primary-dark mb-2">
                 Disponibilità totale
               </h3>
-              <p className="text-primary-gray">
+              <p className="text-gray-600">
                 Supporto continuo durante tutto il processo legale
               </p>
             </div>

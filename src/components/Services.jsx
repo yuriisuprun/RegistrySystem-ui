@@ -54,7 +54,7 @@ const Services = () => {
     <section
       id="services"
       ref={sectionRef}
-      className="section-padding bg-gradient-to-b from-primary-dark to-gray-900"
+      className="section-padding section-light"
     >
       <div className="container-max">
         {/* Section Header */}
@@ -63,11 +63,11 @@ const Services = () => {
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
         >
-          <h2 className="text-4xl lg:text-5xl font-heading font-bold text-primary-light mb-4">
+          <h2 className="text-4xl lg:text-5xl font-heading font-bold text-primary-dark mb-4">
             {t('services.title')}
           </h2>
           <div className="w-24 h-1 bg-primary-gold mx-auto mb-6"></div>
-          <p className="text-lg text-primary-gray max-w-3xl mx-auto">{t('services.subtitle')}</p>
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto">{t('services.subtitle')}</p>
         </div>
 
         {/* Services Grid */}
@@ -80,7 +80,7 @@ const Services = () => {
               }`}
               style={{ transitionDelay: `${index * 200}ms` }}
             >
-              <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-8 h-full border border-gray-700/50 group-hover:border-primary-gold/50 transition-all duration-300">
+              <div className="card-white p-8 h-full border border-gray-100 hover:border-primary-gold/30 transition-all duration-300">
                 {/* Icon */}
                 <div className="mb-6">
                   <div
@@ -91,14 +91,14 @@ const Services = () => {
                 </div>
 
                 {/* Content */}
-                <h3 className="text-xl font-heading font-semibold text-primary-light mb-4 group-hover:text-primary-gold transition-colors duration-300">
+                <h3 className="text-xl font-heading font-semibold text-primary-dark mb-4 group-hover:text-primary-gold transition-colors duration-300">
                   {service.title}
                 </h3>
-                <p className="text-primary-gray leading-relaxed mb-6">{service.description}</p>
+                <p className="text-gray-600 leading-relaxed mb-6">{service.description}</p>
 
                 {/* Learn More Link */}
                 <div className="mt-auto">
-                  <button className="text-primary-gold hover:text-primary-light transition-colors duration-300 font-medium group-hover:translate-x-2 transform transition-transform duration-300 flex items-center">
+                  <button className="text-primary-gold hover:text-primary-dark transition-colors duration-300 font-medium group-hover:translate-x-2 transform transition-transform duration-300 flex items-center">
                     Scopri di più
                     <i className="fas fa-arrow-right ml-2 text-sm"></i>
                   </button>
@@ -114,7 +114,7 @@ const Services = () => {
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
         >
-          <p className="text-primary-gray mb-6">
+          <p className="text-gray-600 mb-6">
             Non trovi l&apos;area di competenza che stai cercando?
           </p>
           <button className="btn-secondary">

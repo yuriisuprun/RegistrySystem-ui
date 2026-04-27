@@ -11,7 +11,10 @@ export default {
           dark: '#0f1720',
           gold: '#c8a96a',
           light: '#ffffff',
-          gray: '#cccccc'
+          gray: '#cccccc',
+          white: '#ffffff',
+          'light-bg': '#f8f9fa',
+          'light-card': '#ffffff'
         }
       },
       fontFamily: {

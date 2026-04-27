@@ -41,7 +41,7 @@ const Footer = () => {
   }
 
   return (
-    <footer id="contact" className="bg-gray-900 relative overflow-hidden">
+    <footer id="contact" className="bg-primary-dark relative overflow-hidden">
       {/* Contact Form Section */}
       <div className="section-padding border-b border-gray-700">
         <div className="container-max">
@@ -147,8 +147,8 @@ const Footer = () => {
 
             {/* Contact Form */}
             <div>
-              <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50">
-                <h3 className="text-2xl font-heading font-semibold text-primary-light mb-6">
+              <div className="card-white rounded-2xl p-8 border border-gray-100 shadow-xl">
+                <h3 className="text-2xl font-heading font-semibold text-primary-dark mb-6">
                   Invia un messaggio
                 </h3>
                 <form onSubmit={handleSubmit} className="space-y-6">
@@ -156,7 +156,7 @@ const Footer = () => {
                     <div>
                       <label
                         htmlFor="name"
-                        className="block text-primary-gray text-sm font-medium mb-2"
+                        className="block text-gray-700 text-sm font-medium mb-2"
                       >
                         Nome completo *
                       </label>
@@ -167,14 +167,14 @@ const Footer = () => {
                         value={formData.name}
                         onChange={handleInputChange}
                         required
-                        className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-primary-light placeholder-gray-400 focus:outline-none focus:border-primary-gold focus:ring-1 focus:ring-primary-gold transition-colors"
+                        className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-primary-dark placeholder-gray-400 focus:outline-none focus:border-primary-gold focus:ring-1 focus:ring-primary-gold transition-colors"
                         placeholder="Il tuo nome"
                       />
                     </div>
                     <div>
                       <label
                         htmlFor="email"
-                        className="block text-primary-gray text-sm font-medium mb-2"
+                        className="block text-gray-700 text-sm font-medium mb-2"
                       >
                         Email *
                       </label>
@@ -185,7 +185,7 @@ const Footer = () => {
                         value={formData.email}
                         onChange={handleInputChange}
                         required
-                        className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-primary-light placeholder-gray-400 focus:outline-none focus:border-primary-gold focus:ring-1 focus:ring-primary-gold transition-colors"
+                        className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-primary-dark placeholder-gray-400 focus:outline-none focus:border-primary-gold focus:ring-1 focus:ring-primary-gold transition-colors"
                         placeholder="la-tua-email@esempio.com"
                       />
                     </div>
@@ -195,7 +195,7 @@ const Footer = () => {
                     <div>
                       <label
                         htmlFor="phone"
-                        className="block text-primary-gray text-sm font-medium mb-2"
+                        className="block text-gray-700 text-sm font-medium mb-2"
                       >
                         Telefono
                       </label>
@@ -205,14 +205,14 @@ const Footer = () => {
                         name="phone"
                         value={formData.phone}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-primary-light placeholder-gray-400 focus:outline-none focus:border-primary-gold focus:ring-1 focus:ring-primary-gold transition-colors"
+                        className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-primary-dark placeholder-gray-400 focus:outline-none focus:border-primary-gold focus:ring-1 focus:ring-primary-gold transition-colors"
                         placeholder="+39 123 456 7890"
                       />
                     </div>
                     <div>
                       <label
                         htmlFor="subject"
-                        className="block text-primary-gray text-sm font-medium mb-2"
+                        className="block text-gray-700 text-sm font-medium mb-2"
                       >
                         Oggetto *
                       </label>
@@ -222,7 +222,7 @@ const Footer = () => {
                         value={formData.subject}
                         onChange={handleInputChange}
                         required
-                        className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-primary-light focus:outline-none focus:border-primary-gold focus:ring-1 focus:ring-primary-gold transition-colors"
+                        className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-primary-dark focus:outline-none focus:border-primary-gold focus:ring-1 focus:ring-primary-gold transition-colors"
                       >
                         <option value="">Seleziona un&apos;area</option>
                         <option value="immigration">Diritto dell&apos;Immigrazione</option>
@@ -237,7 +237,7 @@ const Footer = () => {
                   <div>
                     <label
                       htmlFor="message"
-                      className="block text-primary-gray text-sm font-medium mb-2"
+                      className="block text-gray-700 text-sm font-medium mb-2"
                     >
                       Messaggio *
                     </label>
@@ -248,7 +248,7 @@ const Footer = () => {
                       onChange={handleInputChange}
                       required
                       rows={5}
-                      className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-primary-light placeholder-gray-400 focus:outline-none focus:border-primary-gold focus:ring-1 focus:ring-primary-gold transition-colors resize-vertical"
+                      className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-primary-dark placeholder-gray-400 focus:outline-none focus:border-primary-gold focus:ring-1 focus:ring-primary-gold transition-colors resize-vertical"
                       placeholder="Descrivi brevemente la tua situazione legale..."
                     ></textarea>
                   </div>
@@ -260,7 +260,7 @@ const Footer = () => {
                       required
                       className="mt-1 mr-3 text-primary-gold focus:ring-primary-gold"
                     />
-                    <label htmlFor="privacy" className="text-sm text-primary-gray">
+                    <label htmlFor="privacy" className="text-sm text-gray-700">
                       Accetto il trattamento dei dati personali secondo la{' '}
                       <a href="#" className="text-primary-gold hover:underline">
                         Privacy Policy

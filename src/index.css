@@ -56,6 +56,18 @@
     background-repeat: no-repeat;
     background-size: cover;
   }
+
+  .section-light {
+    @apply bg-gradient-to-b from-gray-50 to-white;
+  }
+
+  .card-white {
+    @apply bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300;
+  }
+
+  .text-dark {
+    @apply text-primary-dark;
+  }
 }
 
 @layer utilities {
