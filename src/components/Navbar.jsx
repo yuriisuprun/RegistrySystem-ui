@@ -89,7 +89,7 @@ const Navbar = () => {
                   <i className="fab fa-linkedin-in"></i>
                 </a>
                 <a href="#" className="text-primary-gray hover:text-primary-gold transition-colors">
-                  <i className="fab fa-twitter"></i>
+                  <i className="fab fa-instagram"></i>
                 </a>
               </div>
             </div>
