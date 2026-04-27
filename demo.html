@@ -1,1538 +1,1538 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Studio Legale - Demo</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary-dark: #0f1720;
-            --primary-gold: #c8a96a;
-            --primary-light: #ffffff;
-            --primary-gray: #cccccc;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--primary-dark);
-            color: var(--primary-light);
-            line-height: 1.6;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 600;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-
-        /* Top Bar */
-        .top-bar {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, #1a2332 100%);
-            border-bottom: 1px solid var(--primary-gold);
-            padding: 0.75rem 0;
-            position: relative;
-            z-index: 1001;
-        }
-
-        .top-bar-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .contact-info {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--primary-gray);
-            text-decoration: none;
-            font-size: 0.875rem;
-            transition: color 0.3s ease;
-        }
-
-        .contact-item:hover {
-            color: var(--primary-gold);
-        }
-
-        .contact-item i {
-            color: var(--primary-gold);
-            width: 16px;
-            text-align: center;
-        }
-
-        .top-bar-right {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .trust-indicators {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
-
-        .trust-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--primary-gray);
-            font-size: 0.75rem;
-            font-weight: 500;
-        }
-
-        .trust-item i {
-            color: var(--primary-gold);
-            font-size: 0.875rem;
-        }
-
-        .social-links {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 32px;
-            height: 32px;
-            background: rgba(200, 169, 106, 0.1);
-            border: 1px solid rgba(200, 169, 106, 0.3);
-            border-radius: 50%;
-            color: var(--primary-gold);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 0.875rem;
-        }
-
-        .social-links a:hover {
-            background: var(--primary-gold);
-            color: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(200, 169, 106, 0.3);
-        }
-
-        /* Navigation */
-        .navbar {
-            position: fixed;
-            top: 60px;
-            width: 100%;
-            background: rgba(15, 23, 32, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 1rem 0;
-            transition: all 0.3s ease;
-            border-bottom: 1px solid rgba(200, 169, 106, 0.2);
-        }
-
-        .navbar.scrolled {
-            background: rgba(15, 23, 32, 0.98);
-            padding: 0.75rem 0;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .nav-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .logo-section {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .logo {
-            font-size: 1.75rem;
-            font-weight: bold;
-            color: var(--primary-gold);
-            margin: 0;
-            line-height: 1.2;
-        }
-
-        .tagline {
-            font-size: 0.75rem;
-            color: var(--primary-gray);
-            margin: 0;
-            font-style: italic;
-            opacity: 0.8;
-        }
-
-        .nav-links {
-            display: none;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--primary-light);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-            padding: 0.5rem 0;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-gold);
-        }
-
-        .nav-links a:not(.btn-primary):after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary-gold);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:not(.btn-primary):hover:after {
-            width: 100%;
-        }
-
-        .cta-button {
-            background: linear-gradient(135deg, var(--primary-gold) 0%, #d4af37 100%);
-            color: var(--primary-dark);
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(200, 169, 106, 0.3);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(200, 169, 106, 0.4);
-            background: linear-gradient(135deg, #d4af37 0%, var(--primary-gold) 100%);
-        }
-
-        .mobile-controls {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .lang-switcher {
-            display: flex;
-            gap: 0.25rem;
-            background: rgba(55, 65, 81, 0.5);
-            border-radius: 0.5rem;
-            padding: 0.25rem;
-        }
-
-        .lang-btn {
-            padding: 0.375rem 0.75rem;
-            background: transparent;
-            border: none;
-            color: var(--primary-gray);
-            border-radius: 0.25rem;
-            cursor: pointer;
-            font-size: 0.75rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .lang-btn.active {
-            background: var(--primary-gold);
-            color: var(--primary-dark);
-        }
-
-        .lang-btn:hover:not(.active) {
-            background: rgba(200, 169, 106, 0.2);
-            color: var(--primary-gold);
-        }
-
-        .mobile-menu-btn {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(55, 65, 81, 0.5);
-            border: 1px solid rgba(200, 169, 106, 0.3);
-            border-radius: 0.5rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .mobile-menu-btn:hover {
-            background: rgba(200, 169, 106, 0.2);
-            border-color: var(--primary-gold);
-        }
-
-        .hamburger-line {
-            width: 20px;
-            height: 2px;
-            background: var(--primary-gold);
-            margin: 2px 0;
-            transition: all 0.3s ease;
-        }
-
-        .mobile-menu-btn.active .hamburger-line:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .mobile-menu-btn.active .hamburger-line:nth-child(2) {
-            opacity: 0;
-        }
-
-        .mobile-menu-btn.active .hamburger-line:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -6px);
-        }
-
-        .mobile-menu {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: rgba(15, 23, 32, 0.98);
-            backdrop-filter: blur(10px);
-            border-top: 1px solid rgba(200, 169, 106, 0.2);
-            transform: translateY(-100%);
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .mobile-menu.active {
-            transform: translateY(0);
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .mobile-menu-content {
-            padding: 2rem 1rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .mobile-menu-content a {
-            color: var(--primary-light);
-            text-decoration: none;
-            padding: 1rem;
-            border-radius: 0.5rem;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-
-        .mobile-menu-content a:hover {
-            background: rgba(200, 169, 106, 0.1);
-            color: var(--primary-gold);
-        }
-
-        .mobile-cta {
-            background: linear-gradient(135deg, var(--primary-gold) 0%, #d4af37 100%);
-            color: var(--primary-dark) !important;
-            text-align: center;
-            font-weight: 600;
-            margin-top: 1rem;
-        }
-
-        .mobile-contact {
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(200, 169, 106, 0.2);
-        }
-
-        .mobile-contact h3 {
-            color: var(--primary-gold);
-            margin-bottom: 1rem;
-            font-size: 1rem;
-        }
-
-        .mobile-contact-item {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            color: var(--primary-gray) !important;
-            padding: 0.75rem !important;
-            text-decoration: none;
-        }
-
-        .mobile-contact-item i {
-            color: var(--primary-gold);
-            width: 20px;
-        }
-
-        .btn-primary {
-            background: var(--primary-gold);
-            color: var(--primary-dark);
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn-primary:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 25px rgba(200, 169, 106, 0.3);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--primary-gold);
-            border: 2px solid var(--primary-gold);
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn-secondary:hover {
-            background: var(--primary-gold);
-            color: var(--primary-dark);
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            background: linear-gradient(rgba(15, 23, 32, 0.8), rgba(15, 23, 32, 0.8)),
-                        url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
-            background-size: cover;
-            background-position: center;
-            text-align: center;
-            padding-top: 120px; /* Account for header height */
-        }
-
-        .hero-content h1 {
-            font-size: clamp(2rem, 5vw, 4rem);
-            margin-bottom: 1.5rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .hero-content p {
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
-            color: var(--primary-gray);
-            max-width: 600px;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        /* Services Section */
-        .services {
-            padding: 5rem 0;
-            background: linear-gradient(to bottom, var(--primary-dark), #1a2332);
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .section-title .divider {
-            width: 6rem;
-            height: 4px;
-            background: var(--primary-gold);
-            margin: 0 auto 1.5rem;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .service-card {
-            background: rgba(55, 65, 81, 0.5);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
-            border-radius: 1rem;
-            border: 1px solid rgba(107, 114, 128, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            border-color: var(--primary-gold);
-        }
-
-        .service-icon {
-            width: 4rem;
-            height: 4rem;
-            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-            border-radius: 0.75rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            font-size: 1.5rem;
-            color: white;
-        }
-
-        .service-card:nth-child(2) .service-icon {
-            background: linear-gradient(135deg, #10b981, #047857);
-        }
-
-        .service-card:nth-child(3) .service-icon {
-            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
-        }
-
-        .service-card:nth-child(4) .service-icon {
-            background: linear-gradient(135deg, #ef4444, #dc2626);
-        }
-
-        /* About Section */
-        .about {
-            padding: 5rem 0;
-            background: var(--primary-dark);
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-image {
-            position: relative;
-        }
-
-        .about-image img {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            border-radius: 1rem;
-        }
-
-        .about-text h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .about-text p {
-            color: var(--primary-gray);
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-        }
-
-        /* Team Section */
-        .team {
-            padding: 5rem 0;
-            background: linear-gradient(to bottom, var(--primary-dark), #1a2332);
-        }
-
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .team-member {
-            background: rgba(55, 65, 81, 0.5);
-            backdrop-filter: blur(10px);
-            border-radius: 1rem;
-            overflow: hidden;
-            border: 1px solid rgba(107, 114, 128, 0.3);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .team-member:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            border-color: var(--primary-gold);
-        }
-
-        .team-member.featured {
-            grid-column: span 2;
-        }
-
-        .team-member.featured .member-info {
-            padding: 2rem;
-        }
-
-        .member-image {
-            position: relative;
-            overflow: hidden;
-            height: 300px;
-        }
-
-        .team-member.featured .member-image {
-            height: 400px;
-        }
-
-        .member-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .team-member:hover .member-image img {
-            transform: scale(1.05);
-        }
-
-        .member-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8));
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            padding: 1rem;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .team-member:hover .member-overlay {
-            opacity: 1;
-        }
-
-        .member-social {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .member-social a {
-            width: 40px;
-            height: 40px;
-            background: var(--primary-gold);
-            color: var(--primary-dark);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .member-social a:hover {
-            background: var(--primary-light);
-            transform: scale(1.1);
-        }
-
-        .member-info {
-            padding: 1.5rem;
-        }
-
-        .member-info h3 {
-            color: var(--primary-light);
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .member-title {
-            color: var(--primary-gold);
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .member-specialization {
-            color: var(--primary-gray);
-            font-style: italic;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-        }
-
-        .member-description {
-            color: var(--primary-gray);
-            line-height: 1.6;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-        }
-
-        .member-credentials {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .credential {
-            background: rgba(200, 169, 106, 0.2);
-            color: var(--primary-gold);
-            padding: 0.25rem 0.75rem;
-            border-radius: 1rem;
-            font-size: 0.75rem;
-            font-weight: 500;
-        }
-
-        /* Certifications */
-        .certifications {
-            margin-top: 4rem;
-            text-align: center;
-        }
-
-        .certifications h3 {
-            color: var(--primary-light);
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .cert-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .cert-item {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.75rem;
-            padding: 1rem;
-            background: rgba(55, 65, 81, 0.3);
-            border-radius: 0.5rem;
-            border: 1px solid rgba(107, 114, 128, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .cert-item:hover {
-            border-color: var(--primary-gold);
-            background: rgba(200, 169, 106, 0.1);
-        }
-
-        .cert-item i {
-            color: var(--primary-gold);
-            font-size: 1.25rem;
-        }
-
-        .cert-item span {
-            color: var(--primary-gray);
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        /* CTA Section */
-        .cta {
-            padding: 5rem 0;
-            background: linear-gradient(rgba(200, 169, 106, 0.9), rgba(234, 179, 8, 0.9)),
-                        url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
-            background-size: cover;
-            background-position: center;
-            text-align: center;
-        }
-
-        .cta h2 {
-            font-size: 3rem;
-            color: var(--primary-dark);
-            margin-bottom: 1rem;
-        }
-
-        .cta p {
-            font-size: 1.25rem;
-            color: var(--primary-dark);
-            margin-bottom: 2rem;
-            opacity: 0.8;
-        }
-
-        .cta .btn-primary {
-            background: var(--primary-dark);
-            color: var(--primary-gold);
-            font-size: 1.1rem;
-            padding: 1rem 2rem;
-        }
-
-        /* Footer */
-        .footer {
-            background: #111827;
-            padding: 3rem 0 1rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h3 {
-            color: var(--primary-gold);
-            margin-bottom: 1rem;
-        }
-
-        .footer-section p, .footer-section a {
-            color: var(--primary-gray);
-            text-decoration: none;
-            margin-bottom: 0.5rem;
-            display: block;
-        }
-
-        .footer-section a:hover {
-            color: var(--primary-gold);
-        }
-
-        .footer-bottom {
-            border-top: 1px solid #374151;
-            padding-top: 1rem;
-            text-align: center;
-            color: var(--primary-gray);
-        }
-
-        /* Language Switcher */
-        .lang-switcher {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .lang-btn {
-            padding: 0.25rem 0.5rem;
-            background: transparent;
-            border: 1px solid var(--primary-gold);
-            color: var(--primary-gold);
-            border-radius: 0.25rem;
-            cursor: pointer;
-            font-size: 0.8rem;
-            transition: all 0.3s ease;
-        }
-
-        .lang-btn.active {
-            background: var(--primary-gold);
-            color: var(--primary-dark);
-        }
-
-        /* Desktop Navigation */
-        @media (min-width: 1024px) {
-            .nav-links {
-                display: flex;
-            }
-
-            .mobile-menu-btn {
-                display: none;
-            }
-
-            .logo {
-                font-size: 2rem;
-            }
-
-            .tagline {
-                font-size: 0.875rem;
-            }
-        }
-
-        /* Tablet Styles */
-        @media (max-width: 1023px) and (min-width: 768px) {
-            .top-bar {
-                padding: 0.5rem 0;
-            }
-
-            .top-bar-content {
-                flex-direction: column;
-                gap: 0.75rem;
-            }
-
-            .trust-indicators {
-                gap: 1rem;
-            }
-
-            .trust-item {
-                font-size: 0.7rem;
-            }
-
-            .contact-info {
-                gap: 1.5rem;
-            }
-
-            .navbar {
-                top: 0;
-            }
-        }
-
-        /* Mobile Styles */
-        @media (max-width: 767px) {
-            .top-bar {
-                display: none;
-            }
-
-            .navbar {
-                top: 0;
-                padding: 1rem 0;
-            }
-
-            .nav-content {
-                gap: 1rem;
-            }
-
-            .logo {
-                font-size: 1.5rem;
-            }
-
-            .tagline {
-                display: none;
-            }
-
-            .lang-switcher {
-                gap: 0.125rem;
-                padding: 0.125rem;
-            }
-
-            .lang-btn {
-                padding: 0.25rem 0.5rem;
-                font-size: 0.7rem;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .team-member.featured {
-                grid-column: span 1;
-            }
-
-            .team-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .cert-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (min-width: 768px) {
-            .nav-links {
-                display: flex;
-            }
-        }
-
-        /* Animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.8s ease forwards;
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate-delay-1 { animation-delay: 0.2s; }
-        .animate-delay-2 { animation-delay: 0.4s; }
-        .animate-delay-3 { animation-delay: 0.6s; }
-        .animate-delay-4 { animation-delay: 0.8s; }
-    </style>
-</head>
-<body>
-    <!-- Top Bar -->
-    <div class="top-bar">
-        <div class="container">
-            <div class="top-bar-content">
-                <div class="contact-info">
-                    <a href="tel:+390612345678" class="contact-item" aria-label="Chiama il numero +39 06 1234567">
-                        <i class="fas fa-phone" aria-hidden="true"></i>
-                        <span>+39 06 1234567</span>
-                    </a>
-                    <a href="mailto:info@studiolegale.it" class="contact-item" aria-label="Invia email a info@studiolegale.it">
-                        <i class="fas fa-envelope" aria-hidden="true"></i>
-                        <span>info@studiolegale.it</span>
-                    </a>
-                    <div class="contact-item">
-                        <i class="fas fa-clock" aria-hidden="true"></i>
-                        <span id="office-hours">Lun-Ven 9:00-18:00 | Sab 9:00-13:00</span>
-                    </div>
-                </div>
-                <div class="top-bar-right">
-                    <!-- Trust Indicators -->
-                    <div class="trust-indicators">
-                        <div class="trust-item">
-                            <i class="fas fa-shield-alt" aria-hidden="true"></i>
-                            <span>Ordine Avvocati Roma</span>
-                        </div>
-                        <div class="trust-item">
-                            <i class="fas fa-certificate" aria-hidden="true"></i>
-                            <span>ISO 9001:2015</span>
-                        </div>
-                        <div class="trust-item">
-                            <i class="fas fa-users" aria-hidden="true"></i>
-                            <span id="experience-years">25+ anni esperienza</span>
-                        </div>
-                    </div>
-                    
-                    <!-- Social Media -->
-                    <div class="social-links">
-                        <a href="https://www.facebook.com/studiolegale" aria-label="Seguici su Facebook" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-facebook-f" aria-hidden="true"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/company/studio-legale-" aria-label="Seguici su LinkedIn" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-linkedin-in" aria-hidden="true"></i>
-                        </a>
-                        <a href="https://twitter.com/studiolegale" aria-label="Seguici su Twitter" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-twitter" aria-hidden="true"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Navigation -->
-    <nav class="navbar" role="navigation" aria-label="Menu principale">
-        <div class="container">
-            <div class="nav-content">
-                <div class="logo-section">
-                    <h1 class="logo">Studio Legale </h1>
-                    <p class="tagline" id="tagline">Eccellenza nella consulenza legale</p>
-                </div>
-                <div class="nav-links" role="menubar">
-                    <a href="#home" role="menuitem">Home</a>
-                    <a href="#about" role="menuitem">Chi siamo</a>
-                    <a href="#team" role="menuitem">Team</a>
-                    <a href="#services" role="menuitem">Aree di competenza</a>
-                    <a href="#contact" role="menuitem">Contatti</a>
-                    <a href="#contact" class="btn-primary cta-button" role="menuitem">
-                        <i class="fas fa-calendar-check" aria-hidden="true"></i>
-                        <span id="appointment-btn">Fissa un appuntamento</span>
-                    </a>
-                </div>
-                <div class="mobile-controls">
-                    <!-- Language Switcher -->
-                    <div class="lang-switcher" role="group" aria-label="Selettore lingua">
-                        <button class="lang-btn active" onclick="changeLanguage('it')" aria-label="Cambia lingua in Italiano" aria-pressed="true">IT</button>
-                        <button class="lang-btn" onclick="changeLanguage('en')" aria-label="Change language to English" aria-pressed="false">EN</button>
-                        <button class="lang-btn" onclick="changeLanguage('ru')" aria-label="Изменить язык на русский" aria-pressed="false">RU</button>
-                    </div>
-                    
-                    <!-- Mobile Menu Button -->
-                    <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Apri menu di navigazione" aria-expanded="false">
-                        <span class="hamburger-line"></span>
-                        <span class="hamburger-line"></span>
-                        <span class="hamburger-line"></span>
-                    </button>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Mobile Menu -->
-        <div class="mobile-menu" id="mobile-menu" role="menu" aria-hidden="true">
-            <div class="mobile-menu-content">
-                <a href="#home" role="menuitem" onclick="closeMobileMenu()">Home</a>
-                <a href="#about" role="menuitem" onclick="closeMobileMenu()">Chi siamo</a>
-                <a href="#team" role="menuitem" onclick="closeMobileMenu()">Team</a>
-                <a href="#services" role="menuitem" onclick="closeMobileMenu()">Aree di competenza</a>
-                <a href="#contact" role="menuitem" onclick="closeMobileMenu()">Contatti</a>
-                <a href="#contact" class="btn-primary mobile-cta" role="menuitem" onclick="closeMobileMenu()">
-                    <i class="fas fa-calendar-check" aria-hidden="true"></i>
-                    <span id="mobile-appointment-btn">Fissa un appuntamento</span>
-                </a>
-                
-                <!-- Mobile Contact Info -->
-                <div class="mobile-contact">
-                    <h3>Contatti Rapidi</h3>
-                    <a href="tel:+390612345678" class="mobile-contact-item">
-                        <i class="fas fa-phone" aria-hidden="true"></i>
-                        <span>+39 06 1234567</span>
-                    </a>
-                    <a href="mailto:info@studiolegale.it" class="mobile-contact-item">
-                        <i class="fas fa-envelope" aria-hidden="true"></i>
-                        <span>info@studiolegale.it</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container">
-            <div class="hero-content fade-in">
-                <h1 id="hero-title">Non sentirti impotente, lottiamo per la giustizia</h1>
-                <p id="hero-subtitle">Studio legale di eccellenza con oltre 20 anni di esperienza nella tutela dei diritti dei nostri clienti</p>
-                <div class="hero-buttons">
-                    <a href="#contact" class="btn-primary">
-                        <i class="fas fa-phone"></i> Contattateci
-                    </a>
-                    <a href="#contact" class="btn-secondary">
-                        <i class="fas fa-calendar-alt"></i> Fissa un appuntamento
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="services">
-        <div class="container">
-            <div class="section-title fade-in">
-                <h2 id="services-title">Le nostre aree di competenza</h2>
-                <div class="divider"></div>
-                <p id="services-subtitle">Offriamo consulenza legale specializzata in diverse aree del diritto</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card fade-in animate-delay-1">
-                    <div class="service-icon">
-                        <i class="fas fa-passport"></i>
-                    </div>
-                    <h3 id="service1-title">Diritto dell'Immigrazione</h3>
-                    <p id="service1-desc">Assistenza completa per pratiche di immigrazione, permessi di soggiorno e cittadinanza</p>
-                </div>
-                <div class="service-card fade-in animate-delay-2">
-                    <div class="service-icon">
-                        <i class="fas fa-balance-scale"></i>
-                    </div>
-                    <h3 id="service2-title">Diritto Civile</h3>
-                    <p id="service2-desc">Consulenza in controversie civili, contratti e diritto di famiglia</p>
-                </div>
-                <div class="service-card fade-in animate-delay-3">
-                    <div class="service-icon">
-                        <i class="fas fa-home"></i>
-                    </div>
-                    <h3 id="service3-title">Diritto Immobiliare</h3>
-                    <p id="service3-desc">Assistenza legale per compravendite, locazioni e controversie immobiliari</p>
-                </div>
-                <div class="service-card fade-in animate-delay-4">
-                    <div class="service-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3 id="service4-title">Responsabilità Civile</h3>
-                    <p id="service4-desc">Tutela dei diritti in caso di danni e responsabilità civile</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-image fade-in">
-                    <img src="https://images.unsplash.com/photo-1589994965851-a8f479c573a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Lady Justice statue">
-                </div>
-                <div class="about-text fade-in animate-delay-1">
-                    <h2 id="about-title">Studio Legale </h2>
-                    <p id="about-content1">Il nostro studio legale rappresenta l'eccellenza nella consulenza giuridica, combinando tradizione e innovazione per offrire soluzioni legali efficaci. Con un team di avvocati altamente qualificati, ci impegniamo a tutelare i diritti dei nostri clienti con professionalità e dedizione.</p>
-                    <p id="about-content2">La nostra esperienza pluriennale e la conoscenza approfondita del diritto italiano ci permettono di affrontare anche i casi più complessi con competenza e determinazione.</p>
-                    <div style="margin-top: 2rem;">
-                        <a href="#team" class="btn-primary">Conosci il nostro team</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Team Section -->
-    <section id="team" class="team">
-        <div class="container">
-            <div class="section-title fade-in">
-                <h2 id="team-title">I Nostri Avvocati</h2>
-                <div class="divider"></div>
-                <p id="team-subtitle">Professionisti esperti al vostro servizio con competenze specializzate</p>
-            </div>
-            
-            <div class="team-grid">
-                <!-- Lead Partner -->
-                <div class="team-member featured fade-in animate-delay-1">
-                    <div class="member-image">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Avv. Marco ">
-                        <div class="member-overlay">
-                            <div class="member-social">
-                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="mailto:m.@studiolegale.it" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="member-info">
-                        <h3 id="lawyer1-name">Avv. Marco </h3>
-                        <p class="member-title" id="lawyer1-title">Fondatore e Partner Senior</p>
-                        <p class="member-specialization" id="lawyer1-spec">Diritto Civile, Diritto Immobiliare</p>
-                        <p class="member-description" id="lawyer1-desc">Oltre 25 anni di esperienza nel diritto civile e immobiliare. Laureato con lode presso l'Università La Sapienza di Roma, specializzato in controversie complesse e transazioni immobiliari di alto valore.</p>
-                        <div class="member-credentials">
-                            <span class="credential">Ordine Avvocati Roma dal 1998</span>
-                            <span class="credential">Cassazionista</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Associate Lawyers -->
-                <div class="team-member fade-in animate-delay-2">
-                    <div class="member-image">
-                        <img src="https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Avv. Elena Rossi">
-                        <div class="member-overlay">
-                            <div class="member-social">
-                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="mailto:e.rossi@studiolegale.it" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="member-info">
-                        <h3 id="lawyer2-name">Avv. Elena Rossi</h3>
-                        <p class="member-title" id="lawyer2-title">Partner</p>
-                        <p class="member-specialization" id="lawyer2-spec">Diritto dell'Immigrazione, Diritto Internazionale</p>
-                        <p class="member-description" id="lawyer2-desc">Esperta in diritto dell'immigrazione con focus su cittadinanza italiana e permessi di soggiorno. Fluente in italiano, inglese e russo.</p>
-                        <div class="member-credentials">
-                            <span class="credential">Ordine Avvocati Roma dal 2010</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="team-member fade-in animate-delay-3">
-                    <div class="member-image">
-                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Avv. Giuseppe Bianchi">
-                        <div class="member-overlay">
-                            <div class="member-social">
-                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="mailto:g.bianchi@studiolegale.it" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="member-info">
-                        <h3 id="lawyer3-name">Avv. Giuseppe Bianchi</h3>
-                        <p class="member-title" id="lawyer3-title">Avvocato Senior</p>
-                        <p class="member-specialization" id="lawyer3-spec">Responsabilità Civile, Diritto Assicurativo</p>
-                        <p class="member-description" id="lawyer3-desc">Specialista in responsabilità civile e diritto assicurativo con particolare esperienza in sinistri stradali e responsabilità professionale.</p>
-                        <div class="member-credentials">
-                            <span class="credential">Ordine Avvocati Roma dal 2015</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="team-member fade-in animate-delay-4">
-                    <div class="member-image">
-                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Avv. Francesca Conti">
-                        <div class="member-overlay">
-                            <div class="member-social">
-                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="mailto:f.conti@studiolegale.it" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="member-info">
-                        <h3 id="lawyer4-name">Avv. Francesca Conti</h3>
-                        <p class="member-title" id="lawyer4-title">Avvocato</p>
-                        <p class="member-specialization" id="lawyer4-spec">Diritto di Famiglia, Diritto Minorile</p>
-                        <p class="member-description" id="lawyer4-desc">Giovane professionista specializzata in diritto di famiglia e tutela dei minori, con approccio moderno e sensibile alle dinamiche familiari.</p>
-                        <div class="member-credentials">
-                            <span class="credential">Ordine Avvocati Roma dal 2020</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Certifications and Memberships -->
-            <div class="certifications fade-in animate-delay-4">
-                <h3 id="certifications-title">Certificazioni e Appartenenze</h3>
-                <div class="cert-grid">
-                    <div class="cert-item">
-                        <i class="fas fa-certificate"></i>
-                        <span>Ordine degli Avvocati di Roma</span>
-                    </div>
-                    <div class="cert-item">
-                        <i class="fas fa-balance-scale"></i>
-                        <span>Camera Civile di Roma</span>
-                    </div>
-                    <div class="cert-item">
-                        <i class="fas fa-globe"></i>
-                        <span>Unione Internazionale Avvocati</span>
-                    </div>
-                    <div class="cert-item">
-                        <i class="fas fa-award"></i>
-                        <span>Certificazione ISO 9001:2015</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta">
-        <div class="container">
-            <div class="fade-in">
-                <h2 id="cta-title">Hai bisogno di assistenza legale?</h2>
-                <p id="cta-subtitle">Contattaci per una consulenza personalizzata</p>
-                <a href="#contact" class="btn-primary">
-                    <i class="fas fa-calendar-check"></i> Prenota una consulenza
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer id="contact" class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Contatti</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Via Roma 123, 00100 Roma, Italia</p>
-                    <a href="tel:+390612345678"><i class="fas fa-phone"></i> +39 06 1234567</a>
-                    <a href="mailto:info@studiolegale.it"><i class="fas fa-envelope"></i> info@studiolegale.it</a>
-                </div>
-                <div class="footer-section">
-                    <h3>Orari di apertura</h3>
-                    <p>Lunedì - Venerdì: 9:00 - 18:00</p>
-                    <p>Sabato: 9:00 - 13:00</p>
-                    <p>Domenica: Chiuso</p>
-                </div>
-                <div class="footer-section">
-                    <h3>Seguici</h3>
-                    <div style="display: flex; gap: 1rem; margin-top: 1rem;">
-                        <a href="#" style="color: var(--primary-gold); font-size: 1.5rem;"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" style="color: var(--primary-gold); font-size: 1.5rem;"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" style="color: var(--primary-gold); font-size: 1.5rem;"><i class="fab fa-twitter"></i></a>
-                        <a href="#" style="color: var(--primary-gold); font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p id="copyright">© 2024 Studio Legale. Tutti i diritti riservati.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Language translations
-        const translations = {
-            it: {
-                'tagline': 'Eccellenza nella consulenza legale',
-                'office-hours': 'Lun-Ven 9:00-18:00 | Sab 9:00-13:00',
-                'experience-years': '25+ anni esperienza',
-                'appointment-btn': 'Fissa un appuntamento',
-                'mobile-appointment-btn': 'Fissa un appuntamento',
-                'hero-title': 'Non sentirti impotente, lottiamo per la giustizia',
-                'hero-subtitle': 'Studio legale di eccellenza con oltre 20 anni di esperienza nella tutela dei diritti dei nostri clienti',
-                'services-title': 'Le nostre aree di competenza',
-                'services-subtitle': 'Offriamo consulenza legale specializzata in diverse aree del diritto',
-                'service1-title': 'Diritto dell\'Immigrazione',
-                'service1-desc': 'Assistenza completa per pratiche di immigrazione, permessi di soggiorno e cittadinanza',
-                'service2-title': 'Diritto Civile',
-                'service2-desc': 'Consulenza in controversie civili, contratti e diritto di famiglia',
-                'service3-title': 'Diritto Immobiliare',
-                'service3-desc': 'Assistenza legale per compravendite, locazioni e controversie immobiliari',
-                'service4-title': 'Responsabilità Civile',
-                'service4-desc': 'Tutela dei diritti in caso di danni e responsabilità civile',
-                'about-title': 'Studio Legale',
-                'about-content1': 'Il nostro studio legale rappresenta l\'eccellenza nella consulenza giuridica, combinando tradizione e innovazione per offrire soluzioni legali efficaci. Con un team di avvocati altamente qualificati, ci impegniamo a tutelare i diritti dei nostri clienti con professionalità e dedizione.',
-                'about-content2': 'La nostra esperienza pluriennale e la conoscenza approfondita del diritto italiano ci permettono di affrontare anche i casi più complessi con competenza e determinazione.',
-                'cta-title': 'Hai bisogno di assistenza legale?',
-                'cta-subtitle': 'Contattaci per una consulenza personalizzata',
-                'copyright': '© 2024 Studio Legale. Tutti i diritti riservati.'
-            },
-            en: {
-                'tagline': 'Excellence in legal consultation',
-                'office-hours': 'Mon-Fri 9:00-18:00 | Sat 9:00-13:00',
-                'experience-years': '25+ years experience',
-                'appointment-btn': 'Book Appointment',
-                'mobile-appointment-btn': 'Book Appointment',
-                'hero-title': 'Don\'t feel powerless, we fight for justice',
-                'hero-subtitle': 'Excellence law firm with over 20 years of experience protecting our clients\' rights',
-                'services-title': 'Our Practice Areas',
-                'services-subtitle': 'We offer specialized legal consultation in various areas of law',
-                'service1-title': 'Immigration Law',
-                'service1-desc': 'Complete assistance for immigration procedures, residence permits and citizenship',
-                'service2-title': 'Civil Law',
-                'service2-desc': 'Consultation in civil disputes, contracts and family law',
-                'service3-title': 'Real Estate Law',
-                'service3-desc': 'Legal assistance for sales, rentals and real estate disputes',
-                'service4-title': 'Civil Liability',
-                'service4-desc': 'Protection of rights in case of damages and civil liability',
-                'about-title': 'Law Firm',
-                'about-content1': 'Our law firm represents excellence in legal consultation, combining tradition and innovation to offer effective legal solutions. With a team of highly qualified lawyers, we are committed to protecting our clients\' rights with professionalism and dedication.',
-                'about-content2': 'Our years of experience and deep knowledge of Italian law allow us to handle even the most complex cases with competence and determination.',
-                'cta-title': 'Need legal assistance?',
-                'cta-subtitle': 'Contact us for personalized consultation',
-                'copyright': '© 2024 Law Firm. All rights reserved.'
-            },
-            ru: {
-                'tagline': 'Превосходство в юридических консультациях',
-                'office-hours': 'Пн-Пт 9:00-18:00 | Сб 9:00-13:00',
-                'experience-years': '25+ лет опыта',
-                'appointment-btn': 'Записаться на прием',
-                'mobile-appointment-btn': 'Записаться на прием',
-                'hero-title': 'Не чувствуйте себя беспомощными, мы боремся за справедливость',
-                'hero-subtitle': 'Превосходная юридическая фирма с более чем 20-летним опытом защиты прав наших клиентов',
-                'services-title': 'Наши области практики',
-                'services-subtitle': 'Мы предлагаем специализированные юридические консультации в различных областях права',
-                'service1-title': 'Иммиграционное право',
-                'service1-desc': 'Полная помощь в иммиграционных процедурах, разрешениях на проживание и гражданстве',
-                'service2-title': 'Гражданское право',
-                'service2-desc': 'Консультации по гражданским спорам, контрактам и семейному праву',
-                'service3-title': 'Недвижимость',
-                'service3-desc': 'Юридическая помощь в продаже, аренде и спорах по недвижимости',
-                'service4-title': 'Гражданская ответственность',
-                'service4-desc': 'Защита прав в случае ущерба и гражданской ответственности',
-                'about-title': 'Юридическая фирма',
-                'about-content1': 'Наша юридическая фирма представляет совершенство в юридических консультациях, сочетая традиции и инновации для предложения эффективных правовых решений. С командой высококвалифицированных юристов мы стремимся защищать права наших клиентов с профессионализмом и преданностью.',
-                'about-content2': 'Наш многолетний опыт и глубокое знание итальянского права позволяют нам справляться даже с самыми сложными делами с компетентностью и решимостью.',
-                'cta-title': 'Нужна юридическая помощь?',
-                'cta-subtitle': 'Свяжитесь с нами для персональной консультации',
-                'copyright': '© 2024 Юридическая фирма. Все права защищены.'
-            }
-        };
-
-        let currentLang = 'it';
-        let mobileMenuOpen = false;
-
-        function toggleMobileMenu() {
-            const mobileMenu = document.getElementById('mobile-menu');
-            const menuBtn = document.querySelector('.mobile-menu-btn');
-            
-            mobileMenuOpen = !mobileMenuOpen;
-            
-            if (mobileMenuOpen) {
-                mobileMenu.classList.add('active');
-                menuBtn.classList.add('active');
-                menuBtn.setAttribute('aria-expanded', 'true');
-                mobileMenu.setAttribute('aria-hidden', 'false');
-            } else {
-                mobileMenu.classList.remove('active');
-                menuBtn.classList.remove('active');
-                menuBtn.setAttribute('aria-expanded', 'false');
-                mobileMenu.setAttribute('aria-hidden', 'true');
-            }
-        }
-
-        function closeMobileMenu() {
-            const mobileMenu = document.getElementById('mobile-menu');
-            const menuBtn = document.querySelector('.mobile-menu-btn');
-            
-            mobileMenuOpen = false;
-            mobileMenu.classList.remove('active');
-            menuBtn.classList.remove('active');
-            menuBtn.setAttribute('aria-expanded', 'false');
-            mobileMenu.setAttribute('aria-hidden', 'true');
-        }
-
-        function changeLanguage(lang) {
-            currentLang = lang;
-            
-            // Update active language button
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.remove('active');
-                btn.setAttribute('aria-pressed', 'false');
-            });
-            
-            // Set active state for all language buttons with the same language
-            document.querySelectorAll(`.lang-btn[onclick="changeLanguage('${lang}')"]`).forEach(btn => {
-                btn.classList.add('active');
-                btn.setAttribute('aria-pressed', 'true');
-            });
-
-            // Update text content
-            Object.keys(translations[lang]).forEach(key => {
-                const element = document.getElementById(key);
-                if (element) {
-                    element.textContent = translations[lang][key];
-                }
-            });
-        }
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animationPlayState = 'running';
-                }
-            });
-        }, observerOptions);
-
-        // Observe all fade-in elements
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Navbar background on scroll
-        window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            const mobileMenu = document.getElementById('mobile-menu');
-            const menuBtn = document.querySelector('.mobile-menu-btn');
-            
-            if (mobileMenuOpen && !mobileMenu.contains(e.target) && !menuBtn.contains(e.target)) {
-                closeMobileMenu();
-            }
-        });
-
-        // Close mobile menu on escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && mobileMenuOpen) {
-                closeMobileMenu();
-            }
-        });
-    </script>
-</body>
-</html>
+<!--<!DOCTYPE html>-->
+<!--<html lang="it">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Studio Legale - Demo</title>-->
+<!--    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">-->
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">-->
+<!--    <style>-->
+<!--        * {-->
+<!--            margin: 0;-->
+<!--            padding: 0;-->
+<!--            box-sizing: border-box;-->
+<!--        }-->
+
+<!--        :root {-->
+<!--            &#45;&#45;primary-dark: #0f1720;-->
+<!--            &#45;&#45;primary-gold: #c8a96a;-->
+<!--            &#45;&#45;primary-light: #ffffff;-->
+<!--            &#45;&#45;primary-gray: #cccccc;-->
+<!--        }-->
+
+<!--        html {-->
+<!--            scroll-behavior: smooth;-->
+<!--        }-->
+
+<!--        body {-->
+<!--            font-family: 'Inter', sans-serif;-->
+<!--            background-color: var(&#45;&#45;primary-dark);-->
+<!--            color: var(&#45;&#45;primary-light);-->
+<!--            line-height: 1.6;-->
+<!--        }-->
+
+<!--        h1, h2, h3, h4, h5, h6 {-->
+<!--            font-family: 'Playfair Display', serif;-->
+<!--            font-weight: 600;-->
+<!--        }-->
+
+<!--        .container {-->
+<!--            max-width: 1200px;-->
+<!--            margin: 0 auto;-->
+<!--            padding: 0 1rem;-->
+<!--        }-->
+
+<!--        /* Top Bar */-->
+<!--        .top-bar {-->
+<!--            background: linear-gradient(135deg, var(&#45;&#45;primary-dark) 0%, #1a2332 100%);-->
+<!--            border-bottom: 1px solid var(&#45;&#45;primary-gold);-->
+<!--            padding: 0.75rem 0;-->
+<!--            position: relative;-->
+<!--            z-index: 1001;-->
+<!--        }-->
+
+<!--        .top-bar-content {-->
+<!--            display: flex;-->
+<!--            justify-content: space-between;-->
+<!--            align-items: center;-->
+<!--            flex-wrap: wrap;-->
+<!--            gap: 1rem;-->
+<!--        }-->
+
+<!--        .contact-info {-->
+<!--            display: flex;-->
+<!--            align-items: center;-->
+<!--            gap: 2rem;-->
+<!--            flex-wrap: wrap;-->
+<!--        }-->
+
+<!--        .contact-item {-->
+<!--            display: flex;-->
+<!--            align-items: center;-->
+<!--            gap: 0.5rem;-->
+<!--            color: var(&#45;&#45;primary-gray);-->
+<!--            text-decoration: none;-->
+<!--            font-size: 0.875rem;-->
+<!--            transition: color 0.3s ease;-->
+<!--        }-->
+
+<!--        .contact-item:hover {-->
+<!--            color: var(&#45;&#45;primary-gold);-->
+<!--        }-->
+
+<!--        .contact-item i {-->
+<!--            color: var(&#45;&#45;primary-gold);-->
+<!--            width: 16px;-->
+<!--            text-align: center;-->
+<!--        }-->
+
+<!--        .top-bar-right {-->
+<!--            display: flex;-->
+<!--            align-items: center;-->
+<!--            gap: 2rem;-->
+<!--        }-->
+
+<!--        .trust-indicators {-->
+<!--            display: flex;-->
+<!--            align-items: center;-->
+<!--            gap: 1.5rem;-->
+<!--        }-->
+
+<!--        .trust-item {-->
+<!--            display: flex;-->
+<!--            align-items: center;-->
+<!--            gap: 0.5rem;-->
+<!--            color: var(&#45;&#45;primary-gray);-->
+<!--            font-size: 0.75rem;-->
+<!--            font-weight: 500;-->
+<!--        }-->
+
+<!--        .trust-item i {-->
+<!--            color: var(&#45;&#45;primary-gold);-->
+<!--            font-size: 0.875rem;-->
+<!--        }-->
+
+<!--        .social-links {-->
+<!--            display: flex;-->
+<!--            align-items: center;-->
+<!--            gap: 1rem;-->
+<!--        }-->
+
+<!--        .social-links a {-->
+<!--            display: flex;-->
+<!--            align-items: center;-->
+<!--            justify-content: center;-->
+<!--            width: 32px;-->
+<!--            height: 32px;-->
+<!--            background: rgba(200, 169, 106, 0.1);-->
+<!--            border: 1px solid rgba(200, 169, 106, 0.3);-->
+<!--            border-radius: 50%;-->
+<!--            color: var(&#45;&#45;primary-gold);-->
+<!--            text-decoration: none;-->
+<!--            transition: all 0.3s ease;-->
+<!--            font-size: 0.875rem;-->
+<!--        }-->
+
+<!--        .social-links a:hover {-->
+<!--            background: var(&#45;&#45;primary-gold);-->
+<!--            color: var(&#45;&#45;primary-dark);-->
+<!--            transform: translateY(-2px);-->
+<!--            box-shadow: 0 4px 12px rgba(200, 169, 106, 0.3);-->
+<!--        }-->
+
+<!--        /* Navigation */-->
+<!--        .navbar {-->
+<!--            position: fixed;-->
+<!--            top: 60px;-->
+<!--            width: 100%;-->
+<!--            background: rgba(15, 23, 32, 0.95);-->
+<!--            backdrop-filter: blur(10px);-->
+<!--            z-index: 1000;-->
+<!--            padding: 1rem 0;-->
+<!--            transition: all 0.3s ease;-->
+<!--            border-bottom: 1px solid rgba(200, 169, 106, 0.2);-->
+<!--        }-->
+
+<!--        .navbar.scrolled {-->
+<!--            background: rgba(15, 23, 32, 0.98);-->
+<!--            padding: 0.75rem 0;-->
+<!--            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);-->
+<!--        }-->
+
+<!--        .nav-content {-->
+<!--            display: flex;-->
+<!--            justify-content: space-between;-->
+<!--            align-items: center;-->
+<!--            gap: 2rem;-->
+<!--        }-->
+
+<!--        .logo-section {-->
+<!--            display: flex;-->
+<!--            flex-direction: column;-->
+<!--        }-->
+
+<!--        .logo {-->
+<!--            font-size: 1.75rem;-->
+<!--            font-weight: bold;-->
+<!--            color: var(&#45;&#45;primary-gold);-->
+<!--            margin: 0;-->
+<!--            line-height: 1.2;-->
+<!--        }-->
+
+<!--        .tagline {-->
+<!--            font-size: 0.75rem;-->
+<!--            color: var(&#45;&#45;primary-gray);-->
+<!--            margin: 0;-->
+<!--            font-style: italic;-->
+<!--            opacity: 0.8;-->
+<!--        }-->
+
+<!--        .nav-links {-->
+<!--            display: none;-->
+<!--            align-items: center;-->
+<!--            gap: 2rem;-->
+<!--        }-->
+
+<!--        .nav-links a {-->
+<!--            color: var(&#45;&#45;primary-light);-->
+<!--            text-decoration: none;-->
+<!--            font-weight: 500;-->
+<!--            transition: all 0.3s ease;-->
+<!--            position: relative;-->
+<!--            padding: 0.5rem 0;-->
+<!--        }-->
+
+<!--        .nav-links a:hover {-->
+<!--            color: var(&#45;&#45;primary-gold);-->
+<!--        }-->
+
+<!--        .nav-links a:not(.btn-primary):after {-->
+<!--            content: '';-->
+<!--            position: absolute;-->
+<!--            bottom: 0;-->
+<!--            left: 0;-->
+<!--            width: 0;-->
+<!--            height: 2px;-->
+<!--            background: var(&#45;&#45;primary-gold);-->
+<!--            transition: width 0.3s ease;-->
+<!--        }-->
+
+<!--        .nav-links a:not(.btn-primary):hover:after {-->
+<!--            width: 100%;-->
+<!--        }-->
+
+<!--        .cta-button {-->
+<!--            background: linear-gradient(135deg, var(&#45;&#45;primary-gold) 0%, #d4af37 100%);-->
+<!--            color: var(&#45;&#45;primary-dark);-->
+<!--            padding: 0.75rem 1.5rem;-->
+<!--            border-radius: 0.5rem;-->
+<!--            font-weight: 600;-->
+<!--            text-decoration: none;-->
+<!--            transition: all 0.3s ease;-->
+<!--            box-shadow: 0 4px 15px rgba(200, 169, 106, 0.3);-->
+<!--            display: flex;-->
+<!--            align-items: center;-->
+<!--            gap: 0.5rem;-->
+<!--        }-->
+
+<!--        .cta-button:hover {-->
+<!--            transform: translateY(-2px);-->
+<!--            box-shadow: 0 6px 20px rgba(200, 169, 106, 0.4);-->
+<!--            background: linear-gradient(135deg, #d4af37 0%, var(&#45;&#45;primary-gold) 100%);-->
+<!--        }-->
+
+<!--        .mobile-controls {-->
+<!--            display: flex;-->
+<!--            align-items: center;-->
+<!--            gap: 1rem;-->
+<!--        }-->
+
+<!--        .lang-switcher {-->
+<!--            display: flex;-->
+<!--            gap: 0.25rem;-->
+<!--            background: rgba(55, 65, 81, 0.5);-->
+<!--            border-radius: 0.5rem;-->
+<!--            padding: 0.25rem;-->
+<!--        }-->
+
+<!--        .lang-btn {-->
+<!--            padding: 0.375rem 0.75rem;-->
+<!--            background: transparent;-->
+<!--            border: none;-->
+<!--            color: var(&#45;&#45;primary-gray);-->
+<!--            border-radius: 0.25rem;-->
+<!--            cursor: pointer;-->
+<!--            font-size: 0.75rem;-->
+<!--            font-weight: 600;-->
+<!--            transition: all 0.3s ease;-->
+<!--        }-->
+
+<!--        .lang-btn.active {-->
+<!--            background: var(&#45;&#45;primary-gold);-->
+<!--            color: var(&#45;&#45;primary-dark);-->
+<!--        }-->
+
+<!--        .lang-btn:hover:not(.active) {-->
+<!--            background: rgba(200, 169, 106, 0.2);-->
+<!--            color: var(&#45;&#45;primary-gold);-->
+<!--        }-->
+
+<!--        .mobile-menu-btn {-->
+<!--            display: flex;-->
+<!--            flex-direction: column;-->
+<!--            justify-content: center;-->
+<!--            align-items: center;-->
+<!--            width: 40px;-->
+<!--            height: 40px;-->
+<!--            background: rgba(55, 65, 81, 0.5);-->
+<!--            border: 1px solid rgba(200, 169, 106, 0.3);-->
+<!--            border-radius: 0.5rem;-->
+<!--            cursor: pointer;-->
+<!--            transition: all 0.3s ease;-->
+<!--        }-->
+
+<!--        .mobile-menu-btn:hover {-->
+<!--            background: rgba(200, 169, 106, 0.2);-->
+<!--            border-color: var(&#45;&#45;primary-gold);-->
+<!--        }-->
+
+<!--        .hamburger-line {-->
+<!--            width: 20px;-->
+<!--            height: 2px;-->
+<!--            background: var(&#45;&#45;primary-gold);-->
+<!--            margin: 2px 0;-->
+<!--            transition: all 0.3s ease;-->
+<!--        }-->
+
+<!--        .mobile-menu-btn.active .hamburger-line:nth-child(1) {-->
+<!--            transform: rotate(45deg) translate(5px, 5px);-->
+<!--        }-->
+
+<!--        .mobile-menu-btn.active .hamburger-line:nth-child(2) {-->
+<!--            opacity: 0;-->
+<!--        }-->
+
+<!--        .mobile-menu-btn.active .hamburger-line:nth-child(3) {-->
+<!--            transform: rotate(-45deg) translate(7px, -6px);-->
+<!--        }-->
+
+<!--        .mobile-menu {-->
+<!--            position: absolute;-->
+<!--            top: 100%;-->
+<!--            left: 0;-->
+<!--            right: 0;-->
+<!--            background: rgba(15, 23, 32, 0.98);-->
+<!--            backdrop-filter: blur(10px);-->
+<!--            border-top: 1px solid rgba(200, 169, 106, 0.2);-->
+<!--            transform: translateY(-100%);-->
+<!--            opacity: 0;-->
+<!--            visibility: hidden;-->
+<!--            transition: all 0.3s ease;-->
+<!--        }-->
+
+<!--        .mobile-menu.active {-->
+<!--            transform: translateY(0);-->
+<!--            opacity: 1;-->
+<!--            visibility: visible;-->
+<!--        }-->
+
+<!--        .mobile-menu-content {-->
+<!--            padding: 2rem 1rem;-->
+<!--            display: flex;-->
+<!--            flex-direction: column;-->
+<!--            gap: 1rem;-->
+<!--        }-->
+
+<!--        .mobile-menu-content a {-->
+<!--            color: var(&#45;&#45;primary-light);-->
+<!--            text-decoration: none;-->
+<!--            padding: 1rem;-->
+<!--            border-radius: 0.5rem;-->
+<!--            transition: all 0.3s ease;-->
+<!--            font-weight: 500;-->
+<!--        }-->
+
+<!--        .mobile-menu-content a:hover {-->
+<!--            background: rgba(200, 169, 106, 0.1);-->
+<!--            color: var(&#45;&#45;primary-gold);-->
+<!--        }-->
+
+<!--        .mobile-cta {-->
+<!--            background: linear-gradient(135deg, var(&#45;&#45;primary-gold) 0%, #d4af37 100%);-->
+<!--            color: var(&#45;&#45;primary-dark) !important;-->
+<!--            text-align: center;-->
+<!--            font-weight: 600;-->
+<!--            margin-top: 1rem;-->
+<!--        }-->
+
+<!--        .mobile-contact {-->
+<!--            margin-top: 2rem;-->
+<!--            padding-top: 2rem;-->
+<!--            border-top: 1px solid rgba(200, 169, 106, 0.2);-->
+<!--        }-->
+
+<!--        .mobile-contact h3 {-->
+<!--            color: var(&#45;&#45;primary-gold);-->
+<!--            margin-bottom: 1rem;-->
+<!--            font-size: 1rem;-->
+<!--        }-->
+
+<!--        .mobile-contact-item {-->
+<!--            display: flex;-->
+<!--            align-items: center;-->
+<!--            gap: 0.75rem;-->
+<!--            color: var(&#45;&#45;primary-gray) !important;-->
+<!--            padding: 0.75rem !important;-->
+<!--            text-decoration: none;-->
+<!--        }-->
+
+<!--        .mobile-contact-item i {-->
+<!--            color: var(&#45;&#45;primary-gold);-->
+<!--            width: 20px;-->
+<!--        }-->
+
+<!--        .btn-primary {-->
+<!--            background: var(&#45;&#45;primary-gold);-->
+<!--            color: var(&#45;&#45;primary-dark);-->
+<!--            padding: 0.75rem 1.5rem;-->
+<!--            border: none;-->
+<!--            border-radius: 0.5rem;-->
+<!--            font-weight: 600;-->
+<!--            cursor: pointer;-->
+<!--            transition: all 0.3s ease;-->
+<!--            text-decoration: none;-->
+<!--            display: inline-block;-->
+<!--        }-->
+
+<!--        .btn-primary:hover {-->
+<!--            transform: scale(1.05);-->
+<!--            box-shadow: 0 10px 25px rgba(200, 169, 106, 0.3);-->
+<!--        }-->
+
+<!--        .btn-secondary {-->
+<!--            background: transparent;-->
+<!--            color: var(&#45;&#45;primary-gold);-->
+<!--            border: 2px solid var(&#45;&#45;primary-gold);-->
+<!--            padding: 0.75rem 1.5rem;-->
+<!--            border-radius: 0.5rem;-->
+<!--            font-weight: 600;-->
+<!--            cursor: pointer;-->
+<!--            transition: all 0.3s ease;-->
+<!--            text-decoration: none;-->
+<!--            display: inline-block;-->
+<!--        }-->
+
+<!--        .btn-secondary:hover {-->
+<!--            background: var(&#45;&#45;primary-gold);-->
+<!--            color: var(&#45;&#45;primary-dark);-->
+<!--        }-->
+
+<!--        /* Hero Section */-->
+<!--        .hero {-->
+<!--            min-height: 100vh;-->
+<!--            display: flex;-->
+<!--            align-items: center;-->
+<!--            justify-content: center;-->
+<!--            position: relative;-->
+<!--            background: linear-gradient(rgba(15, 23, 32, 0.8), rgba(15, 23, 32, 0.8)),-->
+<!--                        url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');-->
+<!--            background-size: cover;-->
+<!--            background-position: center;-->
+<!--            text-align: center;-->
+<!--            padding-top: 120px; /* Account for header height */-->
+<!--        }-->
+
+<!--        .hero-content h1 {-->
+<!--            font-size: clamp(2rem, 5vw, 4rem);-->
+<!--            margin-bottom: 1.5rem;-->
+<!--            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);-->
+<!--        }-->
+
+<!--        .hero-content p {-->
+<!--            font-size: 1.25rem;-->
+<!--            margin-bottom: 2rem;-->
+<!--            color: var(&#45;&#45;primary-gray);-->
+<!--            max-width: 600px;-->
+<!--        }-->
+
+<!--        .hero-buttons {-->
+<!--            display: flex;-->
+<!--            gap: 1rem;-->
+<!--            justify-content: center;-->
+<!--            flex-wrap: wrap;-->
+<!--        }-->
+
+<!--        /* Services Section */-->
+<!--        .services {-->
+<!--            padding: 5rem 0;-->
+<!--            background: linear-gradient(to bottom, var(&#45;&#45;primary-dark), #1a2332);-->
+<!--        }-->
+
+<!--        .section-title {-->
+<!--            text-align: center;-->
+<!--            margin-bottom: 3rem;-->
+<!--        }-->
+
+<!--        .section-title h2 {-->
+<!--            font-size: 2.5rem;-->
+<!--            margin-bottom: 1rem;-->
+<!--        }-->
+
+<!--        .section-title .divider {-->
+<!--            width: 6rem;-->
+<!--            height: 4px;-->
+<!--            background: var(&#45;&#45;primary-gold);-->
+<!--            margin: 0 auto 1.5rem;-->
+<!--        }-->
+
+<!--        .services-grid {-->
+<!--            display: grid;-->
+<!--            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));-->
+<!--            gap: 2rem;-->
+<!--            margin-top: 3rem;-->
+<!--        }-->
+
+<!--        .service-card {-->
+<!--            background: rgba(55, 65, 81, 0.5);-->
+<!--            backdrop-filter: blur(10px);-->
+<!--            padding: 2rem;-->
+<!--            border-radius: 1rem;-->
+<!--            border: 1px solid rgba(107, 114, 128, 0.3);-->
+<!--            transition: all 0.3s ease;-->
+<!--        }-->
+
+<!--        .service-card:hover {-->
+<!--            transform: translateY(-10px);-->
+<!--            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);-->
+<!--            border-color: var(&#45;&#45;primary-gold);-->
+<!--        }-->
+
+<!--        .service-icon {-->
+<!--            width: 4rem;-->
+<!--            height: 4rem;-->
+<!--            background: linear-gradient(135deg, #3b82f6, #1d4ed8);-->
+<!--            border-radius: 0.75rem;-->
+<!--            display: flex;-->
+<!--            align-items: center;-->
+<!--            justify-content: center;-->
+<!--            margin-bottom: 1.5rem;-->
+<!--            font-size: 1.5rem;-->
+<!--            color: white;-->
+<!--        }-->
+
+<!--        .service-card:nth-child(2) .service-icon {-->
+<!--            background: linear-gradient(135deg, #10b981, #047857);-->
+<!--        }-->
+
+<!--        .service-card:nth-child(3) .service-icon {-->
+<!--            background: linear-gradient(135deg, #8b5cf6, #7c3aed);-->
+<!--        }-->
+
+<!--        .service-card:nth-child(4) .service-icon {-->
+<!--            background: linear-gradient(135deg, #ef4444, #dc2626);-->
+<!--        }-->
+
+<!--        /* About Section */-->
+<!--        .about {-->
+<!--            padding: 5rem 0;-->
+<!--            background: var(&#45;&#45;primary-dark);-->
+<!--        }-->
+
+<!--        .about-content {-->
+<!--            display: grid;-->
+<!--            grid-template-columns: 1fr 1fr;-->
+<!--            gap: 4rem;-->
+<!--            align-items: center;-->
+<!--        }-->
+
+<!--        .about-image {-->
+<!--            position: relative;-->
+<!--        }-->
+
+<!--        .about-image img {-->
+<!--            width: 100%;-->
+<!--            height: 400px;-->
+<!--            object-fit: cover;-->
+<!--            border-radius: 1rem;-->
+<!--        }-->
+
+<!--        .about-text h2 {-->
+<!--            font-size: 2.5rem;-->
+<!--            margin-bottom: 1.5rem;-->
+<!--        }-->
+
+<!--        .about-text p {-->
+<!--            color: var(&#45;&#45;primary-gray);-->
+<!--            margin-bottom: 1.5rem;-->
+<!--            font-size: 1.1rem;-->
+<!--        }-->
+
+<!--        /* Team Section */-->
+<!--        .team {-->
+<!--            padding: 5rem 0;-->
+<!--            background: linear-gradient(to bottom, var(&#45;&#45;primary-dark), #1a2332);-->
+<!--        }-->
+
+<!--        .team-grid {-->
+<!--            display: grid;-->
+<!--            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));-->
+<!--            gap: 2rem;-->
+<!--            margin-top: 3rem;-->
+<!--        }-->
+
+<!--        .team-member {-->
+<!--            background: rgba(55, 65, 81, 0.5);-->
+<!--            backdrop-filter: blur(10px);-->
+<!--            border-radius: 1rem;-->
+<!--            overflow: hidden;-->
+<!--            border: 1px solid rgba(107, 114, 128, 0.3);-->
+<!--            transition: all 0.3s ease;-->
+<!--            position: relative;-->
+<!--        }-->
+
+<!--        .team-member:hover {-->
+<!--            transform: translateY(-10px);-->
+<!--            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);-->
+<!--            border-color: var(&#45;&#45;primary-gold);-->
+<!--        }-->
+
+<!--        .team-member.featured {-->
+<!--            grid-column: span 2;-->
+<!--        }-->
+
+<!--        .team-member.featured .member-info {-->
+<!--            padding: 2rem;-->
+<!--        }-->
+
+<!--        .member-image {-->
+<!--            position: relative;-->
+<!--            overflow: hidden;-->
+<!--            height: 300px;-->
+<!--        }-->
+
+<!--        .team-member.featured .member-image {-->
+<!--            height: 400px;-->
+<!--        }-->
+
+<!--        .member-image img {-->
+<!--            width: 100%;-->
+<!--            height: 100%;-->
+<!--            object-fit: cover;-->
+<!--            transition: transform 0.3s ease;-->
+<!--        }-->
+
+<!--        .team-member:hover .member-image img {-->
+<!--            transform: scale(1.05);-->
+<!--        }-->
+
+<!--        .member-overlay {-->
+<!--            position: absolute;-->
+<!--            top: 0;-->
+<!--            left: 0;-->
+<!--            right: 0;-->
+<!--            bottom: 0;-->
+<!--            background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8));-->
+<!--            display: flex;-->
+<!--            align-items: flex-end;-->
+<!--            justify-content: center;-->
+<!--            padding: 1rem;-->
+<!--            opacity: 0;-->
+<!--            transition: opacity 0.3s ease;-->
+<!--        }-->
+
+<!--        .team-member:hover .member-overlay {-->
+<!--            opacity: 1;-->
+<!--        }-->
+
+<!--        .member-social {-->
+<!--            display: flex;-->
+<!--            gap: 1rem;-->
+<!--        }-->
+
+<!--        .member-social a {-->
+<!--            width: 40px;-->
+<!--            height: 40px;-->
+<!--            background: var(&#45;&#45;primary-gold);-->
+<!--            color: var(&#45;&#45;primary-dark);-->
+<!--            border-radius: 50%;-->
+<!--            display: flex;-->
+<!--            align-items: center;-->
+<!--            justify-content: center;-->
+<!--            text-decoration: none;-->
+<!--            transition: all 0.3s ease;-->
+<!--        }-->
+
+<!--        .member-social a:hover {-->
+<!--            background: var(&#45;&#45;primary-light);-->
+<!--            transform: scale(1.1);-->
+<!--        }-->
+
+<!--        .member-info {-->
+<!--            padding: 1.5rem;-->
+<!--        }-->
+
+<!--        .member-info h3 {-->
+<!--            color: var(&#45;&#45;primary-light);-->
+<!--            font-size: 1.25rem;-->
+<!--            margin-bottom: 0.5rem;-->
+<!--        }-->
+
+<!--        .member-title {-->
+<!--            color: var(&#45;&#45;primary-gold);-->
+<!--            font-weight: 600;-->
+<!--            margin-bottom: 0.5rem;-->
+<!--            font-size: 0.9rem;-->
+<!--            text-transform: uppercase;-->
+<!--            letter-spacing: 0.5px;-->
+<!--        }-->
+
+<!--        .member-specialization {-->
+<!--            color: var(&#45;&#45;primary-gray);-->
+<!--            font-style: italic;-->
+<!--            margin-bottom: 1rem;-->
+<!--            font-size: 0.9rem;-->
+<!--        }-->
+
+<!--        .member-description {-->
+<!--            color: var(&#45;&#45;primary-gray);-->
+<!--            line-height: 1.6;-->
+<!--            margin-bottom: 1rem;-->
+<!--            font-size: 0.9rem;-->
+<!--        }-->
+
+<!--        .member-credentials {-->
+<!--            display: flex;-->
+<!--            flex-wrap: wrap;-->
+<!--            gap: 0.5rem;-->
+<!--        }-->
+
+<!--        .credential {-->
+<!--            background: rgba(200, 169, 106, 0.2);-->
+<!--            color: var(&#45;&#45;primary-gold);-->
+<!--            padding: 0.25rem 0.75rem;-->
+<!--            border-radius: 1rem;-->
+<!--            font-size: 0.75rem;-->
+<!--            font-weight: 500;-->
+<!--        }-->
+
+<!--        /* Certifications */-->
+<!--        .certifications {-->
+<!--            margin-top: 4rem;-->
+<!--            text-align: center;-->
+<!--        }-->
+
+<!--        .certifications h3 {-->
+<!--            color: var(&#45;&#45;primary-light);-->
+<!--            font-size: 1.5rem;-->
+<!--            margin-bottom: 2rem;-->
+<!--        }-->
+
+<!--        .cert-grid {-->
+<!--            display: grid;-->
+<!--            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));-->
+<!--            gap: 1.5rem;-->
+<!--        }-->
+
+<!--        .cert-item {-->
+<!--            display: flex;-->
+<!--            align-items: center;-->
+<!--            justify-content: center;-->
+<!--            gap: 0.75rem;-->
+<!--            padding: 1rem;-->
+<!--            background: rgba(55, 65, 81, 0.3);-->
+<!--            border-radius: 0.5rem;-->
+<!--            border: 1px solid rgba(107, 114, 128, 0.2);-->
+<!--            transition: all 0.3s ease;-->
+<!--        }-->
+
+<!--        .cert-item:hover {-->
+<!--            border-color: var(&#45;&#45;primary-gold);-->
+<!--            background: rgba(200, 169, 106, 0.1);-->
+<!--        }-->
+
+<!--        .cert-item i {-->
+<!--            color: var(&#45;&#45;primary-gold);-->
+<!--            font-size: 1.25rem;-->
+<!--        }-->
+
+<!--        .cert-item span {-->
+<!--            color: var(&#45;&#45;primary-gray);-->
+<!--            font-size: 0.9rem;-->
+<!--            font-weight: 500;-->
+<!--        }-->
+
+<!--        /* CTA Section */-->
+<!--        .cta {-->
+<!--            padding: 5rem 0;-->
+<!--            background: linear-gradient(rgba(200, 169, 106, 0.9), rgba(234, 179, 8, 0.9)),-->
+<!--                        url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');-->
+<!--            background-size: cover;-->
+<!--            background-position: center;-->
+<!--            text-align: center;-->
+<!--        }-->
+
+<!--        .cta h2 {-->
+<!--            font-size: 3rem;-->
+<!--            color: var(&#45;&#45;primary-dark);-->
+<!--            margin-bottom: 1rem;-->
+<!--        }-->
+
+<!--        .cta p {-->
+<!--            font-size: 1.25rem;-->
+<!--            color: var(&#45;&#45;primary-dark);-->
+<!--            margin-bottom: 2rem;-->
+<!--            opacity: 0.8;-->
+<!--        }-->
+
+<!--        .cta .btn-primary {-->
+<!--            background: var(&#45;&#45;primary-dark);-->
+<!--            color: var(&#45;&#45;primary-gold);-->
+<!--            font-size: 1.1rem;-->
+<!--            padding: 1rem 2rem;-->
+<!--        }-->
+
+<!--        /* Footer */-->
+<!--        .footer {-->
+<!--            background: #111827;-->
+<!--            padding: 3rem 0 1rem;-->
+<!--        }-->
+
+<!--        .footer-content {-->
+<!--            display: grid;-->
+<!--            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));-->
+<!--            gap: 2rem;-->
+<!--            margin-bottom: 2rem;-->
+<!--        }-->
+
+<!--        .footer-section h3 {-->
+<!--            color: var(&#45;&#45;primary-gold);-->
+<!--            margin-bottom: 1rem;-->
+<!--        }-->
+
+<!--        .footer-section p, .footer-section a {-->
+<!--            color: var(&#45;&#45;primary-gray);-->
+<!--            text-decoration: none;-->
+<!--            margin-bottom: 0.5rem;-->
+<!--            display: block;-->
+<!--        }-->
+
+<!--        .footer-section a:hover {-->
+<!--            color: var(&#45;&#45;primary-gold);-->
+<!--        }-->
+
+<!--        .footer-bottom {-->
+<!--            border-top: 1px solid #374151;-->
+<!--            padding-top: 1rem;-->
+<!--            text-align: center;-->
+<!--            color: var(&#45;&#45;primary-gray);-->
+<!--        }-->
+
+<!--        /* Language Switcher */-->
+<!--        .lang-switcher {-->
+<!--            display: flex;-->
+<!--            gap: 0.5rem;-->
+<!--        }-->
+
+<!--        .lang-btn {-->
+<!--            padding: 0.25rem 0.5rem;-->
+<!--            background: transparent;-->
+<!--            border: 1px solid var(&#45;&#45;primary-gold);-->
+<!--            color: var(&#45;&#45;primary-gold);-->
+<!--            border-radius: 0.25rem;-->
+<!--            cursor: pointer;-->
+<!--            font-size: 0.8rem;-->
+<!--            transition: all 0.3s ease;-->
+<!--        }-->
+
+<!--        .lang-btn.active {-->
+<!--            background: var(&#45;&#45;primary-gold);-->
+<!--            color: var(&#45;&#45;primary-dark);-->
+<!--        }-->
+
+<!--        /* Desktop Navigation */-->
+<!--        @media (min-width: 1024px) {-->
+<!--            .nav-links {-->
+<!--                display: flex;-->
+<!--            }-->
+
+<!--            .mobile-menu-btn {-->
+<!--                display: none;-->
+<!--            }-->
+
+<!--            .logo {-->
+<!--                font-size: 2rem;-->
+<!--            }-->
+
+<!--            .tagline {-->
+<!--                font-size: 0.875rem;-->
+<!--            }-->
+<!--        }-->
+
+<!--        /* Tablet Styles */-->
+<!--        @media (max-width: 1023px) and (min-width: 768px) {-->
+<!--            .top-bar {-->
+<!--                padding: 0.5rem 0;-->
+<!--            }-->
+
+<!--            .top-bar-content {-->
+<!--                flex-direction: column;-->
+<!--                gap: 0.75rem;-->
+<!--            }-->
+
+<!--            .trust-indicators {-->
+<!--                gap: 1rem;-->
+<!--            }-->
+
+<!--            .trust-item {-->
+<!--                font-size: 0.7rem;-->
+<!--            }-->
+
+<!--            .contact-info {-->
+<!--                gap: 1.5rem;-->
+<!--            }-->
+
+<!--            .navbar {-->
+<!--                top: 0;-->
+<!--            }-->
+<!--        }-->
+
+<!--        /* Mobile Styles */-->
+<!--        @media (max-width: 767px) {-->
+<!--            .top-bar {-->
+<!--                display: none;-->
+<!--            }-->
+
+<!--            .navbar {-->
+<!--                top: 0;-->
+<!--                padding: 1rem 0;-->
+<!--            }-->
+
+<!--            .nav-content {-->
+<!--                gap: 1rem;-->
+<!--            }-->
+
+<!--            .logo {-->
+<!--                font-size: 1.5rem;-->
+<!--            }-->
+
+<!--            .tagline {-->
+<!--                display: none;-->
+<!--            }-->
+
+<!--            .lang-switcher {-->
+<!--                gap: 0.125rem;-->
+<!--                padding: 0.125rem;-->
+<!--            }-->
+
+<!--            .lang-btn {-->
+<!--                padding: 0.25rem 0.5rem;-->
+<!--                font-size: 0.7rem;-->
+<!--            }-->
+
+<!--            .services-grid {-->
+<!--                grid-template-columns: 1fr;-->
+<!--            }-->
+
+<!--            .team-member.featured {-->
+<!--                grid-column: span 1;-->
+<!--            }-->
+
+<!--            .team-grid {-->
+<!--                grid-template-columns: 1fr;-->
+<!--            }-->
+
+<!--            .cert-grid {-->
+<!--                grid-template-columns: 1fr;-->
+<!--            }-->
+<!--        }-->
+
+<!--        @media (min-width: 768px) {-->
+<!--            .nav-links {-->
+<!--                display: flex;-->
+<!--            }-->
+<!--        }-->
+
+<!--        /* Animations */-->
+<!--        .fade-in {-->
+<!--            opacity: 0;-->
+<!--            transform: translateY(30px);-->
+<!--            animation: fadeInUp 0.8s ease forwards;-->
+<!--        }-->
+
+<!--        @keyframes fadeInUp {-->
+<!--            to {-->
+<!--                opacity: 1;-->
+<!--                transform: translateY(0);-->
+<!--            }-->
+<!--        }-->
+
+<!--        .animate-delay-1 { animation-delay: 0.2s; }-->
+<!--        .animate-delay-2 { animation-delay: 0.4s; }-->
+<!--        .animate-delay-3 { animation-delay: 0.6s; }-->
+<!--        .animate-delay-4 { animation-delay: 0.8s; }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--    &lt;!&ndash; Top Bar &ndash;&gt;-->
+<!--    <div class="top-bar">-->
+<!--        <div class="container">-->
+<!--            <div class="top-bar-content">-->
+<!--                <div class="contact-info">-->
+<!--                    <a href="tel:+390612345678" class="contact-item" aria-label="Chiama il numero +39 06 1234567">-->
+<!--                        <i class="fas fa-phone" aria-hidden="true"></i>-->
+<!--                        <span>+39 06 1234567</span>-->
+<!--                    </a>-->
+<!--                    <a href="mailto:info@studiolegale.it" class="contact-item" aria-label="Invia email a info@studiolegale.it">-->
+<!--                        <i class="fas fa-envelope" aria-hidden="true"></i>-->
+<!--                        <span>info@studiolegale.it</span>-->
+<!--                    </a>-->
+<!--                    <div class="contact-item">-->
+<!--                        <i class="fas fa-clock" aria-hidden="true"></i>-->
+<!--                        <span id="office-hours">Lun-Ven 9:00-18:00 | Sab 9:00-13:00</span>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="top-bar-right">-->
+<!--                    &lt;!&ndash; Trust Indicators &ndash;&gt;-->
+<!--                    <div class="trust-indicators">-->
+<!--                        <div class="trust-item">-->
+<!--                            <i class="fas fa-shield-alt" aria-hidden="true"></i>-->
+<!--                            <span>Ordine Avvocati Roma</span>-->
+<!--                        </div>-->
+<!--                        <div class="trust-item">-->
+<!--                            <i class="fas fa-certificate" aria-hidden="true"></i>-->
+<!--                            <span>ISO 9001:2015</span>-->
+<!--                        </div>-->
+<!--                        <div class="trust-item">-->
+<!--                            <i class="fas fa-users" aria-hidden="true"></i>-->
+<!--                            <span id="experience-years">25+ anni esperienza</span>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+<!--                    &lt;!&ndash; Social Media &ndash;&gt;-->
+<!--                    <div class="social-links">-->
+<!--                        <a href="https://www.facebook.com/studiolegale" aria-label="Seguici su Facebook" target="_blank" rel="noopener noreferrer">-->
+<!--                            <i class="fab fa-facebook-f" aria-hidden="true"></i>-->
+<!--                        </a>-->
+<!--                        <a href="https://www.linkedin.com/company/studio-legale-" aria-label="Seguici su LinkedIn" target="_blank" rel="noopener noreferrer">-->
+<!--                            <i class="fab fa-linkedin-in" aria-hidden="true"></i>-->
+<!--                        </a>-->
+<!--                        <a href="https://twitter.com/studiolegale" aria-label="Seguici su Twitter" target="_blank" rel="noopener noreferrer">-->
+<!--                            <i class="fab fa-twitter" aria-hidden="true"></i>-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Navigation &ndash;&gt;-->
+<!--    <nav class="navbar" role="navigation" aria-label="Menu principale">-->
+<!--        <div class="container">-->
+<!--            <div class="nav-content">-->
+<!--                <div class="logo-section">-->
+<!--                    <h1 class="logo">Studio Legale </h1>-->
+<!--                    <p class="tagline" id="tagline">Eccellenza nella consulenza legale</p>-->
+<!--                </div>-->
+<!--                <div class="nav-links" role="menubar">-->
+<!--                    <a href="#home" role="menuitem">Home</a>-->
+<!--                    <a href="#about" role="menuitem">Chi siamo</a>-->
+<!--                    <a href="#team" role="menuitem">Team</a>-->
+<!--                    <a href="#services" role="menuitem">Aree di competenza</a>-->
+<!--                    <a href="#contact" role="menuitem">Contatti</a>-->
+<!--                    <a href="#contact" class="btn-primary cta-button" role="menuitem">-->
+<!--                        <i class="fas fa-calendar-check" aria-hidden="true"></i>-->
+<!--                        <span id="appointment-btn">Fissa un appuntamento</span>-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--                <div class="mobile-controls">-->
+<!--                    &lt;!&ndash; Language Switcher &ndash;&gt;-->
+<!--                    <div class="lang-switcher" role="group" aria-label="Selettore lingua">-->
+<!--                        <button class="lang-btn active" onclick="changeLanguage('it')" aria-label="Cambia lingua in Italiano" aria-pressed="true">IT</button>-->
+<!--                        <button class="lang-btn" onclick="changeLanguage('en')" aria-label="Change language to English" aria-pressed="false">EN</button>-->
+<!--                        <button class="lang-btn" onclick="changeLanguage('ru')" aria-label="Изменить язык на русский" aria-pressed="false">RU</button>-->
+<!--                    </div>-->
+
+<!--                    &lt;!&ndash; Mobile Menu Button &ndash;&gt;-->
+<!--                    <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Apri menu di navigazione" aria-expanded="false">-->
+<!--                        <span class="hamburger-line"></span>-->
+<!--                        <span class="hamburger-line"></span>-->
+<!--                        <span class="hamburger-line"></span>-->
+<!--                    </button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        &lt;!&ndash; Mobile Menu &ndash;&gt;-->
+<!--        <div class="mobile-menu" id="mobile-menu" role="menu" aria-hidden="true">-->
+<!--            <div class="mobile-menu-content">-->
+<!--                <a href="#home" role="menuitem" onclick="closeMobileMenu()">Home</a>-->
+<!--                <a href="#about" role="menuitem" onclick="closeMobileMenu()">Chi siamo</a>-->
+<!--                <a href="#team" role="menuitem" onclick="closeMobileMenu()">Team</a>-->
+<!--                <a href="#services" role="menuitem" onclick="closeMobileMenu()">Aree di competenza</a>-->
+<!--                <a href="#contact" role="menuitem" onclick="closeMobileMenu()">Contatti</a>-->
+<!--                <a href="#contact" class="btn-primary mobile-cta" role="menuitem" onclick="closeMobileMenu()">-->
+<!--                    <i class="fas fa-calendar-check" aria-hidden="true"></i>-->
+<!--                    <span id="mobile-appointment-btn">Fissa un appuntamento</span>-->
+<!--                </a>-->
+
+<!--                &lt;!&ndash; Mobile Contact Info &ndash;&gt;-->
+<!--                <div class="mobile-contact">-->
+<!--                    <h3>Contatti Rapidi</h3>-->
+<!--                    <a href="tel:+390612345678" class="mobile-contact-item">-->
+<!--                        <i class="fas fa-phone" aria-hidden="true"></i>-->
+<!--                        <span>+39 06 1234567</span>-->
+<!--                    </a>-->
+<!--                    <a href="mailto:info@studiolegale.it" class="mobile-contact-item">-->
+<!--                        <i class="fas fa-envelope" aria-hidden="true"></i>-->
+<!--                        <span>info@studiolegale.it</span>-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </nav>-->
+
+<!--    &lt;!&ndash; Hero Section &ndash;&gt;-->
+<!--    <section id="home" class="hero">-->
+<!--        <div class="container">-->
+<!--            <div class="hero-content fade-in">-->
+<!--                <h1 id="hero-title">Non sentirti impotente, lottiamo per la giustizia</h1>-->
+<!--                <p id="hero-subtitle">Studio legale di eccellenza con oltre 20 anni di esperienza nella tutela dei diritti dei nostri clienti</p>-->
+<!--                <div class="hero-buttons">-->
+<!--                    <a href="#contact" class="btn-primary">-->
+<!--                        <i class="fas fa-phone"></i> Contattateci-->
+<!--                    </a>-->
+<!--                    <a href="#contact" class="btn-secondary">-->
+<!--                        <i class="fas fa-calendar-alt"></i> Fissa un appuntamento-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </section>-->
+
+<!--    &lt;!&ndash; Services Section &ndash;&gt;-->
+<!--    <section id="services" class="services">-->
+<!--        <div class="container">-->
+<!--            <div class="section-title fade-in">-->
+<!--                <h2 id="services-title">Le nostre aree di competenza</h2>-->
+<!--                <div class="divider"></div>-->
+<!--                <p id="services-subtitle">Offriamo consulenza legale specializzata in diverse aree del diritto</p>-->
+<!--            </div>-->
+<!--            <div class="services-grid">-->
+<!--                <div class="service-card fade-in animate-delay-1">-->
+<!--                    <div class="service-icon">-->
+<!--                        <i class="fas fa-passport"></i>-->
+<!--                    </div>-->
+<!--                    <h3 id="service1-title">Diritto dell'Immigrazione</h3>-->
+<!--                    <p id="service1-desc">Assistenza completa per pratiche di immigrazione, permessi di soggiorno e cittadinanza</p>-->
+<!--                </div>-->
+<!--                <div class="service-card fade-in animate-delay-2">-->
+<!--                    <div class="service-icon">-->
+<!--                        <i class="fas fa-balance-scale"></i>-->
+<!--                    </div>-->
+<!--                    <h3 id="service2-title">Diritto Civile</h3>-->
+<!--                    <p id="service2-desc">Consulenza in controversie civili, contratti e diritto di famiglia</p>-->
+<!--                </div>-->
+<!--                <div class="service-card fade-in animate-delay-3">-->
+<!--                    <div class="service-icon">-->
+<!--                        <i class="fas fa-home"></i>-->
+<!--                    </div>-->
+<!--                    <h3 id="service3-title">Diritto Immobiliare</h3>-->
+<!--                    <p id="service3-desc">Assistenza legale per compravendite, locazioni e controversie immobiliari</p>-->
+<!--                </div>-->
+<!--                <div class="service-card fade-in animate-delay-4">-->
+<!--                    <div class="service-icon">-->
+<!--                        <i class="fas fa-shield-alt"></i>-->
+<!--                    </div>-->
+<!--                    <h3 id="service4-title">Responsabilità Civile</h3>-->
+<!--                    <p id="service4-desc">Tutela dei diritti in caso di danni e responsabilità civile</p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </section>-->
+
+<!--    &lt;!&ndash; About Section &ndash;&gt;-->
+<!--    <section id="about" class="about">-->
+<!--        <div class="container">-->
+<!--            <div class="about-content">-->
+<!--                <div class="about-image fade-in">-->
+<!--                    <img src="https://images.unsplash.com/photo-1589994965851-a8f479c573a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Lady Justice statue">-->
+<!--                </div>-->
+<!--                <div class="about-text fade-in animate-delay-1">-->
+<!--                    <h2 id="about-title">Studio Legale </h2>-->
+<!--                    <p id="about-content1">Il nostro studio legale rappresenta l'eccellenza nella consulenza giuridica, combinando tradizione e innovazione per offrire soluzioni legali efficaci. Con un team di avvocati altamente qualificati, ci impegniamo a tutelare i diritti dei nostri clienti con professionalità e dedizione.</p>-->
+<!--                    <p id="about-content2">La nostra esperienza pluriennale e la conoscenza approfondita del diritto italiano ci permettono di affrontare anche i casi più complessi con competenza e determinazione.</p>-->
+<!--                    <div style="margin-top: 2rem;">-->
+<!--                        <a href="#team" class="btn-primary">Conosci il nostro team</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </section>-->
+
+<!--    &lt;!&ndash; Team Section &ndash;&gt;-->
+<!--    <section id="team" class="team">-->
+<!--        <div class="container">-->
+<!--            <div class="section-title fade-in">-->
+<!--                <h2 id="team-title">I Nostri Avvocati</h2>-->
+<!--                <div class="divider"></div>-->
+<!--                <p id="team-subtitle">Professionisti esperti al vostro servizio con competenze specializzate</p>-->
+<!--            </div>-->
+
+<!--            <div class="team-grid">-->
+<!--                &lt;!&ndash; Lead Partner &ndash;&gt;-->
+<!--                <div class="team-member featured fade-in animate-delay-1">-->
+<!--                    <div class="member-image">-->
+<!--                        <img src="https://images.unsplash.com/photo-15" alt="Avv. Marco ">-->
+<!--                        <div class="member-overlay">-->
+<!--                            <div class="member-social">-->
+<!--                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>-->
+<!--                                <a href="mailto:m.@studiolegale.it" aria-label="Email"><i class="fas fa-envelope"></i></a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="member-info">-->
+<!--                        <h3 id="lawyer1-name">Avv. Marco </h3>-->
+<!--                        <p class="member-title" id="lawyer1-title">Fondatore e Partner Senior</p>-->
+<!--                        <p class="member-specialization" id="lawyer1-spec">Diritto Civile, Diritto Immobiliare</p>-->
+<!--                        <p class="member-description" id="lawyer1-desc">Oltre 25 anni di esperienza nel diritto civile e immobiliare. Laureato con lode presso l'Università La Sapienza di Roma, specializzato in controversie complesse e transazioni immobiliari di alto valore.</p>-->
+<!--                        <div class="member-credentials">-->
+<!--                            <span class="credential">Ordine Avvocati Roma dal 1998</span>-->
+<!--                            <span class="credential">Cassazionista</span>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                &lt;!&ndash; Associate Lawyers &ndash;&gt;-->
+<!--                <div class="team-member fade-in animate-delay-2">-->
+<!--                    <div class="member-image">-->
+<!--                        <img src="https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Avv. Elena Rossi">-->
+<!--                        <div class="member-overlay">-->
+<!--                            <div class="member-social">-->
+<!--                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>-->
+<!--                                <a href="mailto:e.rossi@studiolegale.it" aria-label="Email"><i class="fas fa-envelope"></i></a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="member-info">-->
+<!--                        <h3 id="lawyer2-name">Avv. Elena Rossi</h3>-->
+<!--                        <p class="member-title" id="lawyer2-title">Partner</p>-->
+<!--                        <p class="member-specialization" id="lawyer2-spec">Diritto dell'Immigrazione, Diritto Internazionale</p>-->
+<!--                        <p class="member-description" id="lawyer2-desc">Esperta in diritto dell'immigrazione con focus su cittadinanza italiana e permessi di soggiorno. Fluente in italiano, inglese e russo.</p>-->
+<!--                        <div class="member-credentials">-->
+<!--                            <span class="credential">Ordine Avvocati Roma dal 2010</span>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                <div class="team-member fade-in animate-delay-3">-->
+<!--                    <div class="member-image">-->
+<!--                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Avv. Giuseppe Bianchi">-->
+<!--                        <div class="member-overlay">-->
+<!--                            <div class="member-social">-->
+<!--                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>-->
+<!--                                <a href="mailto:g.bianchi@studiolegale.it" aria-label="Email"><i class="fas fa-envelope"></i></a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="member-info">-->
+<!--                        <h3 id="lawyer3-name">Avv. Giuseppe Bianchi</h3>-->
+<!--                        <p class="member-title" id="lawyer3-title">Avvocato Senior</p>-->
+<!--                        <p class="member-specialization" id="lawyer3-spec">Responsabilità Civile, Diritto Assicurativo</p>-->
+<!--                        <p class="member-description" id="lawyer3-desc">Specialista in responsabilità civile e diritto assicurativo con particolare esperienza in sinistri stradali e responsabilità professionale.</p>-->
+<!--                        <div class="member-credentials">-->
+<!--                            <span class="credential">Ordine Avvocati Roma dal 2015</span>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                <div class="team-member fade-in animate-delay-4">-->
+<!--                    <div class="member-image">-->
+<!--                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Avv. Francesca Conti">-->
+<!--                        <div class="member-overlay">-->
+<!--                            <div class="member-social">-->
+<!--                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>-->
+<!--                                <a href="mailto:f.conti@studiolegale.it" aria-label="Email"><i class="fas fa-envelope"></i></a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="member-info">-->
+<!--                        <h3 id="lawyer4-name">Avv. Francesca Conti</h3>-->
+<!--                        <p class="member-title" id="lawyer4-title">Avvocato</p>-->
+<!--                        <p class="member-specialization" id="lawyer4-spec">Diritto di Famiglia, Diritto Minorile</p>-->
+<!--                        <p class="member-description" id="lawyer4-desc">Giovane professionista specializzata in diritto di famiglia e tutela dei minori, con approccio moderno e sensibile alle dinamiche familiari.</p>-->
+<!--                        <div class="member-credentials">-->
+<!--                            <span class="credential">Ordine Avvocati Roma dal 2020</span>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            &lt;!&ndash; Certifications and Memberships &ndash;&gt;-->
+<!--            <div class="certifications fade-in animate-delay-4">-->
+<!--                <h3 id="certifications-title">Certificazioni e Appartenenze</h3>-->
+<!--                <div class="cert-grid">-->
+<!--                    <div class="cert-item">-->
+<!--                        <i class="fas fa-certificate"></i>-->
+<!--                        <span>Ordine degli Avvocati di Roma</span>-->
+<!--                    </div>-->
+<!--                    <div class="cert-item">-->
+<!--                        <i class="fas fa-balance-scale"></i>-->
+<!--                        <span>Camera Civile di Roma</span>-->
+<!--                    </div>-->
+<!--                    <div class="cert-item">-->
+<!--                        <i class="fas fa-globe"></i>-->
+<!--                        <span>Unione Internazionale Avvocati</span>-->
+<!--                    </div>-->
+<!--                    <div class="cert-item">-->
+<!--                        <i class="fas fa-award"></i>-->
+<!--                        <span>Certificazione ISO 9001:2015</span>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </section>-->
+
+<!--    &lt;!&ndash; CTA Section &ndash;&gt;-->
+<!--    <section class="cta">-->
+<!--        <div class="container">-->
+<!--            <div class="fade-in">-->
+<!--                <h2 id="cta-title">Hai bisogno di assistenza legale?</h2>-->
+<!--                <p id="cta-subtitle">Contattaci per una consulenza personalizzata</p>-->
+<!--                <a href="#contact" class="btn-primary">-->
+<!--                    <i class="fas fa-calendar-check"></i> Prenota una consulenza-->
+<!--                </a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </section>-->
+
+<!--    &lt;!&ndash; Footer &ndash;&gt;-->
+<!--    <footer id="contact" class="footer">-->
+<!--        <div class="container">-->
+<!--            <div class="footer-content">-->
+<!--                <div class="footer-section">-->
+<!--                    <h3>Contatti</h3>-->
+<!--                    <p><i class="fas fa-map-marker-alt"></i> Via Roma 123, 00100 Roma, Italia</p>-->
+<!--                    <a href="tel:+390612345678"><i class="fas fa-phone"></i> +39 06 1234567</a>-->
+<!--                    <a href="mailto:info@studiolegale.it"><i class="fas fa-envelope"></i> info@studiolegale.it</a>-->
+<!--                </div>-->
+<!--                <div class="footer-section">-->
+<!--                    <h3>Orari di apertura</h3>-->
+<!--                    <p>Lunedì - Venerdì: 9:00 - 18:00</p>-->
+<!--                    <p>Sabato: 9:00 - 13:00</p>-->
+<!--                    <p>Domenica: Chiuso</p>-->
+<!--                </div>-->
+<!--                <div class="footer-section">-->
+<!--                    <h3>Seguici</h3>-->
+<!--                    <div style="display: flex; gap: 1rem; margin-top: 1rem;">-->
+<!--                        <a href="#" style="color: var(&#45;&#45;primary-gold); font-size: 1.5rem;"><i class="fab fa-facebook-f"></i></a>-->
+<!--                        <a href="#" style="color: var(&#45;&#45;primary-gold); font-size: 1.5rem;"><i class="fab fa-linkedin-in"></i></a>-->
+<!--                        <a href="#" style="color: var(&#45;&#45;primary-gold); font-size: 1.5rem;"><i class="fab fa-twitter"></i></a>-->
+<!--                        <a href="#" style="color: var(&#45;&#45;primary-gold); font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="footer-bottom">-->
+<!--                <p id="copyright">© 2024 Studio Legale. Tutti i diritti riservati.</p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </footer>-->
+
+<!--    <script>-->
+<!--        // Language translations-->
+<!--        const translations = {-->
+<!--            it: {-->
+<!--                'tagline': 'Eccellenza nella consulenza legale',-->
+<!--                'office-hours': 'Lun-Ven 9:00-18:00 | Sab 9:00-13:00',-->
+<!--                'experience-years': '25+ anni esperienza',-->
+<!--                'appointment-btn': 'Fissa un appuntamento',-->
+<!--                'mobile-appointment-btn': 'Fissa un appuntamento',-->
+<!--                'hero-title': 'Non sentirti impotente, lottiamo per la giustizia',-->
+<!--                'hero-subtitle': 'Studio legale di eccellenza con oltre 20 anni di esperienza nella tutela dei diritti dei nostri clienti',-->
+<!--                'services-title': 'Le nostre aree di competenza',-->
+<!--                'services-subtitle': 'Offriamo consulenza legale specializzata in diverse aree del diritto',-->
+<!--                'service1-title': 'Diritto dell\'Immigrazione',-->
+<!--                'service1-desc': 'Assistenza completa per pratiche di immigrazione, permessi di soggiorno e cittadinanza',-->
+<!--                'service2-title': 'Diritto Civile',-->
+<!--                'service2-desc': 'Consulenza in controversie civili, contratti e diritto di famiglia',-->
+<!--                'service3-title': 'Diritto Immobiliare',-->
+<!--                'service3-desc': 'Assistenza legale per compravendite, locazioni e controversie immobiliari',-->
+<!--                'service4-title': 'Responsabilità Civile',-->
+<!--                'service4-desc': 'Tutela dei diritti in caso di danni e responsabilità civile',-->
+<!--                'about-title': 'Studio Legale',-->
+<!--                'about-content1': 'Il nostro studio legale rappresenta l\'eccellenza nella consulenza giuridica, combinando tradizione e innovazione per offrire soluzioni legali efficaci. Con un team di avvocati altamente qualificati, ci impegniamo a tutelare i diritti dei nostri clienti con professionalità e dedizione.',-->
+<!--                'about-content2': 'La nostra esperienza pluriennale e la conoscenza approfondita del diritto italiano ci permettono di affrontare anche i casi più complessi con competenza e determinazione.',-->
+<!--                'cta-title': 'Hai bisogno di assistenza legale?',-->
+<!--                'cta-subtitle': 'Contattaci per una consulenza personalizzata',-->
+<!--                'copyright': '© 2024 Studio Legale. Tutti i diritti riservati.'-->
+<!--            },-->
+<!--            en: {-->
+<!--                'tagline': 'Excellence in legal consultation',-->
+<!--                'office-hours': 'Mon-Fri 9:00-18:00 | Sat 9:00-13:00',-->
+<!--                'experience-years': '25+ years experience',-->
+<!--                'appointment-btn': 'Book Appointment',-->
+<!--                'mobile-appointment-btn': 'Book Appointment',-->
+<!--                'hero-title': 'Don\'t feel powerless, we fight for justice',-->
+<!--                'hero-subtitle': 'Excellence law firm with over 20 years of experience protecting our clients\' rights',-->
+<!--                'services-title': 'Our Practice Areas',-->
+<!--                'services-subtitle': 'We offer specialized legal consultation in various areas of law',-->
+<!--                'service1-title': 'Immigration Law',-->
+<!--                'service1-desc': 'Complete assistance for immigration procedures, residence permits and citizenship',-->
+<!--                'service2-title': 'Civil Law',-->
+<!--                'service2-desc': 'Consultation in civil disputes, contracts and family law',-->
+<!--                'service3-title': 'Real Estate Law',-->
+<!--                'service3-desc': 'Legal assistance for sales, rentals and real estate disputes',-->
+<!--                'service4-title': 'Civil Liability',-->
+<!--                'service4-desc': 'Protection of rights in case of damages and civil liability',-->
+<!--                'about-title': 'Law Firm',-->
+<!--                'about-content1': 'Our law firm represents excellence in legal consultation, combining tradition and innovation to offer effective legal solutions. With a team of highly qualified lawyers, we are committed to protecting our clients\' rights with professionalism and dedication.',-->
+<!--                'about-content2': 'Our years of experience and deep knowledge of Italian law allow us to handle even the most complex cases with competence and determination.',-->
+<!--                'cta-title': 'Need legal assistance?',-->
+<!--                'cta-subtitle': 'Contact us for personalized consultation',-->
+<!--                'copyright': '© 2024 Law Firm. All rights reserved.'-->
+<!--            },-->
+<!--            ru: {-->
+<!--                'tagline': 'Превосходство в юридических консультациях',-->
+<!--                'office-hours': 'Пн-Пт 9:00-18:00 | Сб 9:00-13:00',-->
+<!--                'experience-years': '25+ лет опыта',-->
+<!--                'appointment-btn': 'Записаться на прием',-->
+<!--                'mobile-appointment-btn': 'Записаться на прием',-->
+<!--                'hero-title': 'Не чувствуйте себя беспомощными, мы боремся за справедливость',-->
+<!--                'hero-subtitle': 'Превосходная юридическая фирма с более чем 20-летним опытом защиты прав наших клиентов',-->
+<!--                'services-title': 'Наши области практики',-->
+<!--                'services-subtitle': 'Мы предлагаем специализированные юридические консультации в различных областях права',-->
+<!--                'service1-title': 'Иммиграционное право',-->
+<!--                'service1-desc': 'Полная помощь в иммиграционных процедурах, разрешениях на проживание и гражданстве',-->
+<!--                'service2-title': 'Гражданское право',-->
+<!--                'service2-desc': 'Консультации по гражданским спорам, контрактам и семейному праву',-->
+<!--                'service3-title': 'Недвижимость',-->
+<!--                'service3-desc': 'Юридическая помощь в продаже, аренде и спорах по недвижимости',-->
+<!--                'service4-title': 'Гражданская ответственность',-->
+<!--                'service4-desc': 'Защита прав в случае ущерба и гражданской ответственности',-->
+<!--                'about-title': 'Юридическая фирма',-->
+<!--                'about-content1': 'Наша юридическая фирма представляет совершенство в юридических консультациях, сочетая традиции и инновации для предложения эффективных правовых решений. С командой высококвалифицированных юристов мы стремимся защищать права наших клиентов с профессионализмом и преданностью.',-->
+<!--                'about-content2': 'Наш многолетний опыт и глубокое знание итальянского права позволяют нам справляться даже с самыми сложными делами с компетентностью и решимостью.',-->
+<!--                'cta-title': 'Нужна юридическая помощь?',-->
+<!--                'cta-subtitle': 'Свяжитесь с нами для персональной консультации',-->
+<!--                'copyright': '© 2024 Юридическая фирма. Все права защищены.'-->
+<!--            }-->
+<!--        };-->
+
+<!--        let currentLang = 'it';-->
+<!--        let mobileMenuOpen = false;-->
+
+<!--        function toggleMobileMenu() {-->
+<!--            const mobileMenu = document.getElementById('mobile-menu');-->
+<!--            const menuBtn = document.querySelector('.mobile-menu-btn');-->
+
+<!--            mobileMenuOpen = !mobileMenuOpen;-->
+
+<!--            if (mobileMenuOpen) {-->
+<!--                mobileMenu.classList.add('active');-->
+<!--                menuBtn.classList.add('active');-->
+<!--                menuBtn.setAttribute('aria-expanded', 'true');-->
+<!--                mobileMenu.setAttribute('aria-hidden', 'false');-->
+<!--            } else {-->
+<!--                mobileMenu.classList.remove('active');-->
+<!--                menuBtn.classList.remove('active');-->
+<!--                menuBtn.setAttribute('aria-expanded', 'false');-->
+<!--                mobileMenu.setAttribute('aria-hidden', 'true');-->
+<!--            }-->
+<!--        }-->
+
+<!--        function closeMobileMenu() {-->
+<!--            const mobileMenu = document.getElementById('mobile-menu');-->
+<!--            const menuBtn = document.querySelector('.mobile-menu-btn');-->
+
+<!--            mobileMenuOpen = false;-->
+<!--            mobileMenu.classList.remove('active');-->
+<!--            menuBtn.classList.remove('active');-->
+<!--            menuBtn.setAttribute('aria-expanded', 'false');-->
+<!--            mobileMenu.setAttribute('aria-hidden', 'true');-->
+<!--        }-->
+
+<!--        function changeLanguage(lang) {-->
+<!--            currentLang = lang;-->
+
+<!--            // Update active language button-->
+<!--            document.querySelectorAll('.lang-btn').forEach(btn => {-->
+<!--                btn.classList.remove('active');-->
+<!--                btn.setAttribute('aria-pressed', 'false');-->
+<!--            });-->
+
+<!--            // Set active state for all language buttons with the same language-->
+<!--            document.querySelectorAll(`.lang-btn[onclick="changeLanguage('${lang}')"]`).forEach(btn => {-->
+<!--                btn.classList.add('active');-->
+<!--                btn.setAttribute('aria-pressed', 'true');-->
+<!--            });-->
+
+<!--            // Update text content-->
+<!--            Object.keys(translations[lang]).forEach(key => {-->
+<!--                const element = document.getElementById(key);-->
+<!--                if (element) {-->
+<!--                    element.textContent = translations[lang][key];-->
+<!--                }-->
+<!--            });-->
+<!--        }-->
+
+<!--        // Smooth scrolling for navigation links-->
+<!--        document.querySelectorAll('a[href^="#"]').forEach(anchor => {-->
+<!--            anchor.addEventListener('click', function (e) {-->
+<!--                e.preventDefault();-->
+<!--                const target = document.querySelector(this.getAttribute('href'));-->
+<!--                if (target) {-->
+<!--                    target.scrollIntoView({-->
+<!--                        behavior: 'smooth',-->
+<!--                        block: 'start'-->
+<!--                    });-->
+<!--                }-->
+<!--            });-->
+<!--        });-->
+
+<!--        // Intersection Observer for animations-->
+<!--        const observerOptions = {-->
+<!--            threshold: 0.1,-->
+<!--            rootMargin: '0px 0px -50px 0px'-->
+<!--        };-->
+
+<!--        const observer = new IntersectionObserver((entries) => {-->
+<!--            entries.forEach(entry => {-->
+<!--                if (entry.isIntersecting) {-->
+<!--                    entry.target.style.animationPlayState = 'running';-->
+<!--                }-->
+<!--            });-->
+<!--        }, observerOptions);-->
+
+<!--        // Observe all fade-in elements-->
+<!--        document.querySelectorAll('.fade-in').forEach(el => {-->
+<!--            observer.observe(el);-->
+<!--        });-->
+
+<!--        // Navbar background on scroll-->
+<!--        window.addEventListener('scroll', () => {-->
+<!--            const navbar = document.querySelector('.navbar');-->
+<!--            if (window.scrollY > 50) {-->
+<!--                navbar.classList.add('scrolled');-->
+<!--            } else {-->
+<!--                navbar.classList.remove('scrolled');-->
+<!--            }-->
+<!--        });-->
+
+<!--        // Close mobile menu when clicking outside-->
+<!--        document.addEventListener('click', (e) => {-->
+<!--            const mobileMenu = document.getElementById('mobile-menu');-->
+<!--            const menuBtn = document.querySelector('.mobile-menu-btn');-->
+
+<!--            if (mobileMenuOpen && !mobileMenu.contains(e.target) && !menuBtn.contains(e.target)) {-->
+<!--                closeMobileMenu();-->
+<!--            }-->
+<!--        });-->
+
+<!--        // Close mobile menu on escape key-->
+<!--        document.addEventListener('keydown', (e) => {-->
+<!--            if (e.key === 'Escape' && mobileMenuOpen) {-->
+<!--                closeMobileMenu();-->
+<!--            }-->
+<!--        });-->
+<!--    </script>-->
+<!--</body>-->
+<!--</html>-->
