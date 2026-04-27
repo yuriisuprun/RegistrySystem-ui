@@ -30,7 +30,7 @@
     "framer-motion": "^10.16.16"
   },
   "devDependencies": {
-    "@vitejs/plugin-react": "^4.2.1",
+    "@vitejs/plugin-react": "^5.0.0",
     "autoprefixer": "^10.4.16",
     "eslint": "^8.55.0",
     "eslint-plugin-jsx-a11y": "^6.8.0",
