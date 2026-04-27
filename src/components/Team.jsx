@@ -30,8 +30,7 @@ const Team = () => {
       title: t('team.lawyer1.title'),
       specialization: t('team.lawyer1.specialization'),
       description: t('team.lawyer1.description'),
-      image:
-        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+      image: null,
       email: 'm.@studiolegale.it',
       credentials: ['Ordine Avvocati Roma dal 1998', 'Cassazionista'],
       featured: true,
@@ -42,8 +41,7 @@ const Team = () => {
       title: t('team.lawyer2.title'),
       specialization: t('team.lawyer2.specialization'),
       description: t('team.lawyer2.description'),
-      image:
-        'https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+      image: null,
       email: 'e.rossi@studiolegale.it',
       credentials: ['Ordine Avvocati Roma dal 2010'],
     },
@@ -53,8 +51,7 @@ const Team = () => {
       title: t('team.lawyer3.title'),
       specialization: t('team.lawyer3.specialization'),
       description: t('team.lawyer3.description'),
-      image:
-        'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+      image: null,
       email: 'g.bianchi@studiolegale.it',
       credentials: ['Ordine Avvocati Roma dal 2015'],
     },
@@ -64,8 +61,7 @@ const Team = () => {
       title: t('team.lawyer4.title'),
       specialization: t('team.lawyer4.specialization'),
       description: t('team.lawyer4.description'),
-      image:
-        'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+      image: null,
       email: 'f.conti@studiolegale.it',
       credentials: ['Ordine Avvocati Roma dal 2020'],
     },
@@ -110,31 +106,40 @@ const Team = () => {
             >
               <div className="card-white rounded-xl overflow-hidden border border-gray-100 group-hover:border-primary-gold/30 transition-all duration-300">
                 {/* Member Image */}
-                <div className={`relative overflow-hidden ${member.featured ? 'h-80' : 'h-64'}`}>
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-3">
-                      <a
-                        href="#"
-                        className="w-10 h-10 bg-primary-gold text-primary-dark rounded-full flex items-center justify-center hover:bg-primary-light transition-colors duration-300"
-                        aria-label="LinkedIn"
-                      >
-                        <i className="fab fa-linkedin-in"></i>
-                      </a>
-                      <a
-                        href={`mailto:${member.email}`}
-                        className="w-10 h-10 bg-primary-gold text-primary-dark rounded-full flex items-center justify-center hover:bg-primary-light transition-colors duration-300"
-                        aria-label="Email"
-                      >
-                        <i className="fas fa-envelope"></i>
-                      </a>
+                <div className={`relative overflow-hidden ${member.featured ? 'h-80' : 'h-64'} bg-gray-200 flex items-center justify-center`}>
+                  {member.image ? (
+                    <>
+                      <img
+                        src={member.image}
+                        alt={member.name}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-3">
+                          <a
+                            href="#"
+                            className="w-10 h-10 bg-primary-gold text-primary-dark rounded-full flex items-center justify-center hover:bg-primary-light transition-colors duration-300"
+                            aria-label="LinkedIn"
+                          >
+                            <i className="fab fa-linkedin-in"></i>
+                          </a>
+                          <a
+                            href={`mailto:${member.email}`}
+                            className="w-10 h-10 bg-primary-gold text-primary-dark rounded-full flex items-center justify-center hover:bg-primary-light transition-colors duration-300"
+                            aria-label="Email"
+                          >
+                            <i className="fas fa-envelope"></i>
+                          </a>
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <div className="flex flex-col items-center justify-center text-gray-400">
+                      <i className="fas fa-image text-4xl mb-2"></i>
+                      <p className="text-sm font-medium">Foto in arrivo</p>
                     </div>
-                  </div>
+                  )}
                 </div>
 
                 {/* Member Info */}
